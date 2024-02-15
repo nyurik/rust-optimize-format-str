@@ -1,0 +1,311 @@
+; ModuleID = 'libtest.e5e93ba33aa89e1-cgu.0'
+source_filename = "libtest.e5e93ba33aa89e1-cgu.0"
+target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-i128:128-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-unknown-linux-gnu"
+
+%"core::option::Option<(core::ptr::non_null::NonNull<u8>, core::alloc::layout::Layout)>" = type { [1 x i64], i64, [1 x i64] }
+%"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Err" = type { [1 x i64], %"alloc::collections::TryReserveError" }
+%"alloc::collections::TryReserveError" = type { %"alloc::collections::TryReserveErrorKind" }
+%"alloc::collections::TryReserveErrorKind" = type { i64, [1 x i64] }
+%"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Ok" = type { [1 x i64], %"core::ptr::non_null::NonNull<[u8]>" }
+%"core::ptr::non_null::NonNull<[u8]>" = type { { ptr, i64 } }
+%"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>" = type { i64, [2 x i64] }
+%"alloc::vec::Vec<u8>" = type { %"alloc::raw_vec::RawVec<u8>", i64 }
+%"alloc::raw_vec::RawVec<u8>" = type { i64, ptr, %"alloc::alloc::Global" }
+%"alloc::alloc::Global" = type {}
+
+@__rust_no_alloc_shim_is_unstable = external global i8
+@alloc_670087e04a011ad5213914c9f897ccd6 = private unnamed_addr constant <{ [20 x i8] }> <{ [20 x i8] c"Simple inline string" }>, align 1
+
+; alloc::raw_vec::finish_grow
+; Function Attrs: noinline nounwind nonlazybind uwtable
+define internal fastcc void @alloc::raw_vec::finish_grow(ptr noalias nocapture noundef writeonly align 8 dereferenceable(24) %_0, i64 noundef %0, i64 %1, ptr noalias nocapture noundef readonly align 8 dereferenceable(24) %current_memory) unnamed_addr #0 {
+start:
+  %2 = icmp eq i64 %0, 0
+  br i1 %2, label %bb7, label %bb8
+
+bb8:                                              ; preds = %start
+  %3 = getelementptr inbounds %"core::option::Option<(core::ptr::non_null::NonNull<u8>, core::alloc::layout::Layout)>", ptr %current_memory, i64 0, i32 1
+  %4 = load i64, ptr %3, align 8, !range !3, !noundef !4
+  %.not = icmp eq i64 %4, 0
+  br i1 %.not, label %bb1, label %bb2
+
+bb7:                                              ; preds = %start
+  %5 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Err", ptr %_0, i64 0, i32 1
+  store i64 0, ptr %5, align 8
+  br label %bb6
+
+bb2:                                              ; preds = %bb8
+  %ptr = load ptr, ptr %current_memory, align 8, !nonnull !4, !noundef !4
+  %6 = getelementptr inbounds %"core::option::Option<(core::ptr::non_null::NonNull<u8>, core::alloc::layout::Layout)>", ptr %current_memory, i64 0, i32 2
+  %7 = load i64, ptr %6, align 8, !noundef !4
+  %cond = icmp eq i64 %4, %0
+  tail call void @llvm.assume(i1 %cond)
+  %8 = icmp eq i64 %7, 0
+  br i1 %8, label %bb1.i.i, label %bb4.i.i
+
+bb1.i.i:                                          ; preds = %bb2
+  %9 = icmp eq i64 %1, 0
+  br i1 %9, label %bb2.i.i.i, label %bb4.i.i.i
+
+bb2.i.i.i:                                        ; preds = %bb1.i.i
+  %ptr6.i.i.i = inttoptr i64 %0 to ptr
+  br label %bb5
+
+bb4.i.i.i:                                        ; preds = %bb1.i.i
+  %10 = load volatile i8, ptr @__rust_no_alloc_shim_is_unstable, align 1
+  %_0.i.i.i.i = tail call noalias noundef ptr @__rust_alloc(i64 noundef %1, i64 noundef %0) #14
+  br label %bb5
+
+bb4.i.i:                                          ; preds = %bb2
+  %cond.i.i = icmp ule i64 %7, %1
+  tail call void @llvm.assume(i1 %cond.i.i)
+  %raw_ptr.i.i = tail call noundef ptr @__rust_realloc(ptr noundef nonnull %ptr, i64 noundef %7, i64 noundef %0, i64 noundef %1) #14
+  br label %bb5
+
+bb1:                                              ; preds = %bb8
+  %11 = icmp eq i64 %1, 0
+  br i1 %11, label %bb2.i.i, label %bb4.i.i24
+
+bb2.i.i:                                          ; preds = %bb1
+  %12 = add i64 %0, -1
+  %_25.i.i = icmp sgt i64 %12, -1
+  tail call void @llvm.assume(i1 %_25.i.i)
+  %ptr6.i.i = inttoptr i64 %0 to ptr
+  br label %bb5
+
+bb4.i.i24:                                        ; preds = %bb1
+  %13 = load volatile i8, ptr @__rust_no_alloc_shim_is_unstable, align 1
+  %14 = add i64 %0, -1
+  %_17.i.i.i = icmp sgt i64 %14, -1
+  tail call void @llvm.assume(i1 %_17.i.i.i)
+  %_0.i.i.i = tail call noalias noundef ptr @__rust_alloc(i64 noundef %1, i64 noundef %0) #14
+  br label %bb5
+
+bb5:                                              ; preds = %bb4.i.i24, %bb2.i.i, %bb4.i.i, %bb4.i.i.i, %bb2.i.i.i
+  %_0.sroa.0.2.i.i.pn = phi ptr [ %raw_ptr.i.i, %bb4.i.i ], [ %ptr6.i.i.i, %bb2.i.i.i ], [ %_0.i.i.i.i, %bb4.i.i.i ], [ %ptr6.i.i, %bb2.i.i ], [ %_0.i.i.i, %bb4.i.i24 ]
+  %15 = icmp eq ptr %_0.sroa.0.2.i.i.pn, null
+  br i1 %15, label %bb12, label %bb13
+
+bb13:                                             ; preds = %bb5
+  %16 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Ok", ptr %_0, i64 0, i32 1
+  store ptr %_0.sroa.0.2.i.i.pn, ptr %16, align 8
+  %17 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Ok", ptr %_0, i64 0, i32 1, i32 0, i32 1
+  store i64 %1, ptr %17, align 8
+  br label %bb6
+
+bb12:                                             ; preds = %bb5
+  %18 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Err", ptr %_0, i64 0, i32 1
+  store i64 %0, ptr %18, align 8
+  %19 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Err", ptr %_0, i64 0, i32 1, i32 0, i32 1
+  store i64 %1, ptr %19, align 8
+  br label %bb6
+
+bb6:                                              ; preds = %bb13, %bb12, %bb7
+  %storemerge23 = phi i64 [ 1, %bb7 ], [ 0, %bb13 ], [ 1, %bb12 ]
+  store i64 %storemerge23, ptr %_0, align 8
+  ret void
+}
+
+; alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle
+; Function Attrs: cold nonlazybind uwtable
+define internal fastcc void @"alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle"(ptr noalias nocapture noundef align 8 dereferenceable(16) %slf, i64 noundef %len, i64 noundef %additional) unnamed_addr #1 personality ptr @rust_eh_personality {
+start:
+  %_17.i = alloca %"core::option::Option<(core::ptr::non_null::NonNull<u8>, core::alloc::layout::Layout)>", align 8
+  %self3.i = alloca %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>", align 8
+  tail call void @llvm.experimental.noalias.scope.decl(metadata !5)
+  %0 = tail call { i64, i1 } @llvm.uadd.with.overflow.i64(i64 %len, i64 %additional)
+  %_25.1.i = extractvalue { i64, i1 } %0, 1
+  br i1 %_25.1.i, label %bb5.i, label %bb9.i
+
+bb9.i:                                            ; preds = %start
+  %_25.0.i = extractvalue { i64, i1 } %0, 0
+  %_12.i = load i64, ptr %slf, align 8, !alias.scope !5, !noundef !4
+  %v1.i = shl i64 %_12.i, 1
+  %_0.0.sroa.speculated.i.i = tail call noundef i64 @llvm.umax.i64(i64 %v1.i, i64 %_25.0.i)
+  %_0.0.sroa.speculated.i17.i = tail call noundef i64 @llvm.umax.i64(i64 %_0.0.sroa.speculated.i.i, i64 8)
+  %_4.i.i = icmp sgt i64 %_0.0.sroa.speculated.i17.i, -1
+  %_0.sroa.0.0.i.i = zext i1 %_4.i.i to i64
+  call void @llvm.lifetime.start.p0(i64 24, ptr nonnull %self3.i), !noalias !5
+  call void @llvm.lifetime.start.p0(i64 24, ptr nonnull %_17.i), !noalias !5
+  %1 = getelementptr inbounds i8, ptr %slf, i64 8
+  %2 = icmp eq i64 %_12.i, 0
+  br i1 %2, label %bb2.i.i, label %bb3.i.i
+
+bb2.i.i:                                          ; preds = %bb9.i
+  %3 = getelementptr inbounds %"core::option::Option<(core::ptr::non_null::NonNull<u8>, core::alloc::layout::Layout)>", ptr %_17.i, i64 0, i32 1
+  store i64 0, ptr %3, align 8, !alias.scope !8, !noalias !5
+  br label %"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i"
+
+bb3.i.i:                                          ; preds = %bb9.i
+  %self.val16.i = load ptr, ptr %1, align 8, !alias.scope !5, !nonnull !4, !noundef !4
+  store ptr %self.val16.i, ptr %_17.i, align 8, !alias.scope !8, !noalias !5
+  %_9.sroa.4.0._0.sroa_idx.i.i = getelementptr inbounds i8, ptr %_17.i, i64 8
+  store i64 1, ptr %_9.sroa.4.0._0.sroa_idx.i.i, align 8, !alias.scope !8, !noalias !5
+  %_9.sroa.5.0._0.sroa_idx.i.i = getelementptr inbounds i8, ptr %_17.i, i64 16
+  store i64 %_12.i, ptr %_9.sroa.5.0._0.sroa_idx.i.i, align 8, !alias.scope !8, !noalias !5
+  br label %"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i"
+
+"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i": ; preds = %bb3.i.i, %bb2.i.i
+; call alloc::raw_vec::finish_grow
+  call fastcc void @alloc::raw_vec::finish_grow(ptr noalias nocapture noundef nonnull align 8 dereferenceable(24) %self3.i, i64 noundef %_0.sroa.0.0.i.i, i64 %_0.0.sroa.speculated.i17.i, ptr noalias nocapture noundef nonnull readonly align 8 dereferenceable(24) %_17.i), !noalias !5
+  call void @llvm.lifetime.end.p0(i64 24, ptr nonnull %_17.i), !noalias !5
+  %_41.i = load i64, ptr %self3.i, align 8, !range !11, !noalias !5, !noundef !4
+  %trunc.not.i = icmp eq i64 %_41.i, 0
+  br i1 %trunc.not.i, label %"alloc::raw_vec::RawVec<T,A>::grow_amortized.exit.thread", label %"alloc::raw_vec::RawVec<T,A>::grow_amortized.exit"
+
+"alloc::raw_vec::RawVec<T,A>::grow_amortized.exit.thread": ; preds = %"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i"
+  %4 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Ok", ptr %self3.i, i64 0, i32 1
+  %v.0.i = load ptr, ptr %4, align 8, !noalias !5, !nonnull !4, !noundef !4
+  call void @llvm.lifetime.end.p0(i64 24, ptr nonnull %self3.i), !noalias !5
+  store ptr %v.0.i, ptr %1, align 8, !alias.scope !5
+  store i64 %_0.0.sroa.speculated.i17.i, ptr %slf, align 8, !alias.scope !5
+  ret void
+
+"alloc::raw_vec::RawVec<T,A>::grow_amortized.exit": ; preds = %"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i"
+  %5 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Err", ptr %self3.i, i64 0, i32 1
+  %e.0.i = load i64, ptr %5, align 8, !range !3, !noalias !5, !noundef !4
+  %6 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Err", ptr %self3.i, i64 0, i32 1, i32 0, i32 1
+  %e.1.i = load i64, ptr %6, align 8, !noalias !5
+  call void @llvm.lifetime.end.p0(i64 24, ptr nonnull %self3.i), !noalias !5
+  %cond = icmp eq i64 %e.0.i, 0
+  br i1 %cond, label %bb5.i, label %bb7.i
+
+bb5.i:                                            ; preds = %"alloc::raw_vec::RawVec<T,A>::grow_amortized.exit", %start
+; call alloc::raw_vec::capacity_overflow
+  tail call void @alloc::raw_vec::capacity_overflow() #15
+  unreachable
+
+bb7.i:                                            ; preds = %"alloc::raw_vec::RawVec<T,A>::grow_amortized.exit"
+; call alloc::alloc::handle_alloc_error
+  tail call void @alloc::alloc::handle_alloc_error(i64 noundef %e.0.i, i64 noundef %e.1.i) #15
+  unreachable
+}
+
+; libtest::my_test_func
+; Function Attrs: nonlazybind uwtable
+define noundef zeroext i1 @libtest::my_test_func(ptr noalias nocapture noundef align 8 dereferenceable(24) %buffer) unnamed_addr #2 {
+bb1.i:
+  tail call void @llvm.experimental.noalias.scope.decl(metadata !12)
+  tail call void @llvm.experimental.noalias.scope.decl(metadata !15)
+  tail call void @llvm.experimental.noalias.scope.decl(metadata !18)
+  tail call void @llvm.experimental.noalias.scope.decl(metadata !21)
+  tail call void @llvm.experimental.noalias.scope.decl(metadata !24)
+  %0 = getelementptr inbounds %"alloc::vec::Vec<u8>", ptr %buffer, i64 0, i32 1
+  %len.i.i.i.i.i.i = load i64, ptr %0, align 8, !alias.scope !27, !noalias !28, !noundef !4
+  %1 = load i64, ptr %buffer, align 8, !alias.scope !32, !noalias !28, !noundef !4
+  %_7.i.i.i.i.i.i = sub i64 %1, %len.i.i.i.i.i.i
+  %_5.i.i.i.i.i.i = icmp ult i64 %_7.i.i.i.i.i.i, 20
+  br i1 %_5.i.i.i.i.i.i, label %bb1.i.i.i.i.i.i, label %"<&mut W as core::fmt::Write::write_fmt::SpecWriteFmt>::spec_write_fmt.exit"
+
+bb1.i.i.i.i.i.i:                                  ; preds = %bb1.i
+; call alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle
+  tail call fastcc void @"alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle"(ptr noalias noundef nonnull align 8 dereferenceable(16) %buffer, i64 noundef %len.i.i.i.i.i.i, i64 noundef 20), !noalias !28
+  %len.pre.i.i.i.i.i = load i64, ptr %0, align 8, !alias.scope !27, !noalias !28
+  br label %"<&mut W as core::fmt::Write::write_fmt::SpecWriteFmt>::spec_write_fmt.exit"
+
+"<&mut W as core::fmt::Write::write_fmt::SpecWriteFmt>::spec_write_fmt.exit": ; preds = %bb1.i, %bb1.i.i.i.i.i.i
+  %len.i.i.i.i.i = phi i64 [ %len.i.i.i.i.i.i, %bb1.i ], [ %len.pre.i.i.i.i.i, %bb1.i.i.i.i.i.i ]
+  %2 = getelementptr inbounds i8, ptr %buffer, i64 8
+  %self1.i1.i.i.i.i = load ptr, ptr %2, align 8, !alias.scope !27, !noalias !28, !nonnull !4, !noundef !4
+  %dst.i.i.i.i.i = getelementptr inbounds i8, ptr %self1.i1.i.i.i.i, i64 %len.i.i.i.i.i
+  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 1 dereferenceable(20) %dst.i.i.i.i.i, ptr noundef nonnull align 1 dereferenceable(20) @alloc_670087e04a011ad5213914c9f897ccd6, i64 20, i1 false), !noalias !35
+  %3 = add i64 %len.i.i.i.i.i, 20
+  store i64 %3, ptr %0, align 8, !alias.scope !27, !noalias !28
+  ret i1 false
+}
+
+; Function Attrs: nonlazybind
+declare i32 @rust_eh_personality(...) unnamed_addr #3
+
+; Function Attrs: mustprogress nocallback nofree nosync nounwind willreturn memory(inaccessiblemem: write)
+declare void @llvm.assume(i1 noundef) #4
+
+; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #5
+
+; Function Attrs: nounwind nonlazybind allockind("alloc,uninitialized,aligned") allocsize(0) uwtable
+declare noalias noundef ptr @__rust_alloc(i64 noundef, i64 allocalign noundef) unnamed_addr #6
+
+; Function Attrs: nounwind nonlazybind allockind("realloc,aligned") allocsize(3) uwtable
+declare noalias noundef ptr @__rust_realloc(ptr allocptr noundef, i64 noundef, i64 allocalign noundef, i64 noundef) unnamed_addr #7
+
+; alloc::raw_vec::capacity_overflow
+; Function Attrs: noinline noreturn nonlazybind uwtable
+declare void @alloc::raw_vec::capacity_overflow() unnamed_addr #8
+
+; alloc::alloc::handle_alloc_error
+; Function Attrs: cold noreturn nonlazybind uwtable
+declare void @alloc::alloc::handle_alloc_error(i64 noundef, i64 noundef) unnamed_addr #9
+
+; Function Attrs: mustprogress nocallback nofree nosync nounwind speculatable willreturn memory(none)
+declare { i64, i1 } @llvm.uadd.with.overflow.i64(i64, i64) #10
+
+; Function Attrs: mustprogress nocallback nofree nosync nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.lifetime.start.p0(i64 immarg, ptr nocapture) #11
+
+; Function Attrs: mustprogress nocallback nofree nosync nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.lifetime.end.p0(i64 immarg, ptr nocapture) #11
+
+; Function Attrs: nocallback nofree nosync nounwind willreturn memory(inaccessiblemem: readwrite)
+declare void @llvm.experimental.noalias.scope.decl(metadata) #12
+
+; Function Attrs: nocallback nofree nosync nounwind speculatable willreturn memory(none)
+declare i64 @llvm.umax.i64(i64, i64) #13
+
+attributes #0 = { noinline nounwind nonlazybind uwtable "probe-stack"="inline-asm" "target-cpu"="x86-64" }
+attributes #1 = { cold nonlazybind uwtable "probe-stack"="inline-asm" "target-cpu"="x86-64" }
+attributes #2 = { nonlazybind uwtable "probe-stack"="inline-asm" "target-cpu"="x86-64" }
+attributes #3 = { nonlazybind "target-cpu"="x86-64" }
+attributes #4 = { mustprogress nocallback nofree nosync nounwind willreturn memory(inaccessiblemem: write) }
+attributes #5 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #6 = { nounwind nonlazybind allockind("alloc,uninitialized,aligned") allocsize(0) uwtable "alloc-family"="__rust_alloc" "probe-stack"="inline-asm" "target-cpu"="x86-64" }
+attributes #7 = { nounwind nonlazybind allockind("realloc,aligned") allocsize(3) uwtable "alloc-family"="__rust_alloc" "probe-stack"="inline-asm" "target-cpu"="x86-64" }
+attributes #8 = { noinline noreturn nonlazybind uwtable "probe-stack"="inline-asm" "target-cpu"="x86-64" }
+attributes #9 = { cold noreturn nonlazybind uwtable "probe-stack"="inline-asm" "target-cpu"="x86-64" }
+attributes #10 = { mustprogress nocallback nofree nosync nounwind speculatable willreturn memory(none) }
+attributes #11 = { mustprogress nocallback nofree nosync nounwind willreturn memory(argmem: readwrite) }
+attributes #12 = { nocallback nofree nosync nounwind willreturn memory(inaccessiblemem: readwrite) }
+attributes #13 = { nocallback nofree nosync nounwind speculatable willreturn memory(none) }
+attributes #14 = { nounwind }
+attributes #15 = { noreturn }
+
+!llvm.module.flags = !{!0, !1}
+!llvm.ident = !{!2}
+
+!0 = !{i32 8, !"PIC Level", i32 2}
+!1 = !{i32 2, !"RtLibUseGOT", i32 1}
+!2 = !{!"rustc version 1.78.0-dev"}
+!3 = !{i64 0, i64 -9223372036854775807}
+!4 = !{}
+!5 = !{!6}
+!6 = distinct !{!6, !7, !"alloc::raw_vec::RawVec<T,A>::grow_amortized: %self"}
+!7 = distinct !{!7, !"alloc::raw_vec::RawVec<T,A>::grow_amortized"}
+!8 = !{!9}
+!9 = distinct !{!9, !10, !"alloc::raw_vec::RawVec<T,A>::current_memory: %_0"}
+!10 = distinct !{!10, !"alloc::raw_vec::RawVec<T,A>::current_memory"}
+!11 = !{i64 0, i64 2}
+!12 = !{!13}
+!13 = distinct !{!13, !14, !"<&mut W as core::fmt::Write::write_fmt::SpecWriteFmt>::spec_write_fmt: %self"}
+!14 = distinct !{!14, !"<&mut W as core::fmt::Write::write_fmt::SpecWriteFmt>::spec_write_fmt"}
+!15 = !{!16}
+!16 = distinct !{!16, !17, !"<alloc::string::String as core::fmt::Write>::write_str: %self"}
+!17 = distinct !{!17, !"<alloc::string::String as core::fmt::Write>::write_str"}
+!18 = !{!19}
+!19 = distinct !{!19, !20, !"alloc::vec::Vec<T,A>::extend_from_slice: %self"}
+!20 = distinct !{!20, !"alloc::vec::Vec<T,A>::extend_from_slice"}
+!21 = !{!22}
+!22 = distinct !{!22, !23, !"<alloc::vec::Vec<T,A> as alloc::vec::spec_extend::SpecExtend<&T,core::slice::iter::Iter<T>>>::spec_extend: %self"}
+!23 = distinct !{!23, !"<alloc::vec::Vec<T,A> as alloc::vec::spec_extend::SpecExtend<&T,core::slice::iter::Iter<T>>>::spec_extend"}
+!24 = !{!25}
+!25 = distinct !{!25, !26, !"alloc::vec::Vec<T,A>::append_elements: %self"}
+!26 = distinct !{!26, !"alloc::vec::Vec<T,A>::append_elements"}
+!27 = !{!25, !22, !19, !16, !13}
+!28 = !{!29, !30, !31}
+!29 = distinct !{!29, !20, !"alloc::vec::Vec<T,A>::extend_from_slice: %other.0"}
+!30 = distinct !{!30, !17, !"<alloc::string::String as core::fmt::Write>::write_str: %s.0"}
+!31 = distinct !{!31, !14, !"<&mut W as core::fmt::Write::write_fmt::SpecWriteFmt>::spec_write_fmt: %args"}
+!32 = !{!33, !25, !22, !19, !16, !13}
+!33 = distinct !{!33, !34, !"alloc::vec::Vec<T,A>::reserve: %self"}
+!34 = distinct !{!34, !"alloc::vec::Vec<T,A>::reserve"}
+!35 = !{!25, !22, !19, !16, !13, !31}

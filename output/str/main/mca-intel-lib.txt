@@ -1,0 +1,601 @@
+Iterations:        100
+Instructions:      28000
+Total Cycles:      19875
+Total uOps:        40300
+
+Dispatch Width:    6
+uOps Per Cycle:    2.03
+IPC:               1.41
+Block RThroughput: 67.2
+
+
+Instruction Info:
+[1]: #uOps
+[2]: Latency
+[3]: RThroughput
+[4]: MayLoad
+[5]: MayStore
+[6]: HasSideEffects (U)
+
+[1]    [2]    [3]    [4]    [5]    [6]    Instructions:
+ 1      1     0.25                        mov	rdx, rsi
+ 1      1     0.50                        lea	rsi, [rip + .L__unnamed_1]
+ 2      6     1.00    *                   jmp	qword ptr [rip + core::fmt::write@GOTPCREL]
+ 1      5     0.50    *                   mov	rsi, qword ptr [rdi]
+ 1      1     0.25                        test	rsi, rsi
+ 1      1     0.50                        je	.LBB1_1
+ 1      5     0.50    *                   mov	rdi, qword ptr [rdi + 8]
+ 1      1     0.25                        mov	edx, 1
+ 2      6     1.00    *                   jmp	qword ptr [rip + __rust_dealloc@GOTPCREL]
+ 3      7     1.00                  U     ret
+ 3      2     1.00           *            push	rbp
+ 3      2     1.00           *            push	r15
+ 3      2     1.00           *            push	r14
+ 3      2     1.00           *            push	rbx
+ 3      2     1.00           *            push	rax
+ 1      1     0.25                        mov	rbx, rdi
+ 1      1     0.25                        cmp	esi, 128
+ 1      1     0.50                        jae	.LBB2_1
+ 1      5     0.50    *                   mov	rax, qword ptr [rbx + 16]
+ 2      6     0.50    *                   cmp	rax, qword ptr [rbx]
+ 1      1     0.50                        jne	.LBB2_10
+ 1      1     0.25                        mov	rdi, rbx
+ 1      1     0.25                        mov	ebp, esi
+ 1      1     0.25                        mov	rsi, rax
+ 4      3     1.00                        call	alloc::raw_vec::RawVec<T,A>::reserve_for_push
+ 1      1     0.25                        mov	esi, ebp
+ 1      5     0.50    *                   mov	rax, qword ptr [rbx + 16]
+ 1      5     0.50    *                   mov	rcx, qword ptr [rbx + 8]
+ 1      1     1.00           *            mov	byte ptr [rcx + rax], sil
+ 1      1     0.25                        inc	rax
+ 1      1     1.00           *            mov	qword ptr [rbx + 16], rax
+ 1      1     0.50                        jmp	.LBB2_11
+ 1      1     1.00           *            mov	dword ptr [rsp + 4], 0
+ 1      1     0.25                        mov	eax, esi
+ 1      1     0.25                        cmp	esi, 2048
+ 1      1     0.50                        jae	.LBB2_2
+ 1      1     0.50                        shr	eax, 6
+ 1      1     0.25                        or	al, -64
+ 1      1     1.00           *            mov	byte ptr [rsp + 4], al
+ 1      1     0.25                        and	sil, 63
+ 1      1     0.25                        or	sil, -128
+ 1      1     1.00           *            mov	byte ptr [rsp + 5], sil
+ 1      1     0.25                        mov	r14d, 2
+ 1      1     0.50                        jmp	.LBB2_5
+ 1      1     0.25                        cmp	esi, 65536
+ 1      1     0.50                        jae	.LBB2_4
+ 1      1     0.50                        shr	eax, 12
+ 1      1     0.25                        or	al, -32
+ 1      1     1.00           *            mov	byte ptr [rsp + 4], al
+ 1      1     0.25                        mov	eax, esi
+ 1      1     0.50                        shr	eax, 6
+ 1      1     0.25                        and	al, 63
+ 1      1     0.25                        or	al, -128
+ 1      1     1.00           *            mov	byte ptr [rsp + 5], al
+ 1      1     0.25                        and	sil, 63
+ 1      1     0.25                        or	sil, -128
+ 1      1     1.00           *            mov	byte ptr [rsp + 6], sil
+ 1      1     0.25                        mov	r14d, 3
+ 1      1     0.50                        jmp	.LBB2_5
+ 1      1     0.50                        shr	eax, 18
+ 1      1     0.25                        and	al, 7
+ 1      1     0.25                        or	al, -16
+ 1      1     1.00           *            mov	byte ptr [rsp + 4], al
+ 1      1     0.25                        mov	eax, esi
+ 1      1     0.50                        shr	eax, 12
+ 1      1     0.25                        and	al, 63
+ 1      1     0.25                        or	al, -128
+ 1      1     1.00           *            mov	byte ptr [rsp + 5], al
+ 1      1     0.25                        mov	eax, esi
+ 1      1     0.50                        shr	eax, 6
+ 1      1     0.25                        and	al, 63
+ 1      1     0.25                        or	al, -128
+ 1      1     1.00           *            mov	byte ptr [rsp + 6], al
+ 1      1     0.25                        and	sil, 63
+ 1      1     0.25                        or	sil, -128
+ 1      1     1.00           *            mov	byte ptr [rsp + 7], sil
+ 1      1     0.25                        mov	r14d, 4
+ 1      5     0.50    *                   mov	rax, qword ptr [rbx]
+ 1      5     0.50    *                   mov	r15, qword ptr [rbx + 16]
+ 1      1     0.25                        sub	rax, r15
+ 1      1     0.25                        cmp	rax, r14
+ 1      1     0.50                        jb	.LBB2_6
+ 1      5     0.50    *                   mov	rdi, qword ptr [rbx + 8]
+ 1      1     0.25                        add	rdi, r15
+ 1      1     0.50                        lea	rsi, [rsp + 4]
+ 1      1     0.25                        mov	rdx, r14
+ 5      7     1.00    *                   call	qword ptr [rip + memcpy@GOTPCREL]
+ 1      1     0.25                        add	r15, r14
+ 1      1     1.00           *            mov	qword ptr [rbx + 16], r15
+ 1      0     0.17                        xor	eax, eax
+ 1      1     0.25                        add	rsp, 8
+ 2      6     0.50    *                   pop	rbx
+ 2      6     0.50    *                   pop	r14
+ 2      6     0.50    *                   pop	r15
+ 2      6     0.50    *                   pop	rbp
+ 3      7     1.00                  U     ret
+ 1      1     0.25                        mov	rdi, rbx
+ 1      1     0.25                        mov	rsi, r15
+ 1      1     0.25                        mov	rdx, r14
+ 4      3     1.00                        call	alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle
+ 1      5     0.50    *                   mov	r15, qword ptr [rbx + 16]
+ 1      1     0.50                        jmp	.LBB2_7
+ 3      2     1.00           *            push	r15
+ 3      2     1.00           *            push	r14
+ 3      2     1.00           *            push	r12
+ 3      2     1.00           *            push	rbx
+ 3      2     1.00           *            push	rax
+ 1      1     0.25                        mov	rbx, rdx
+ 1      1     0.25                        mov	r14, rdi
+ 1      5     0.50    *                   mov	rax, qword ptr [rdi]
+ 1      5     0.50    *                   mov	r15, qword ptr [rdi + 16]
+ 1      1     0.25                        sub	rax, r15
+ 1      1     0.25                        cmp	rax, rdx
+ 1      1     0.50                        jb	.LBB3_1
+ 1      5     0.50    *                   mov	rdi, qword ptr [r14 + 8]
+ 1      1     0.25                        add	rdi, r15
+ 1      1     0.25                        mov	rdx, rbx
+ 5      7     1.00    *                   call	qword ptr [rip + memcpy@GOTPCREL]
+ 1      1     0.25                        add	r15, rbx
+ 1      1     1.00           *            mov	qword ptr [r14 + 16], r15
+ 1      0     0.17                        xor	eax, eax
+ 1      1     0.25                        add	rsp, 8
+ 2      6     0.50    *                   pop	rbx
+ 2      6     0.50    *                   pop	r12
+ 2      6     0.50    *                   pop	r14
+ 2      6     0.50    *                   pop	r15
+ 3      7     1.00                  U     ret
+ 1      1     0.25                        mov	rdi, r14
+ 1      1     0.25                        mov	r12, rsi
+ 1      1     0.25                        mov	rsi, r15
+ 1      1     0.25                        mov	rdx, rbx
+ 4      3     1.00                        call	alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle
+ 1      1     0.25                        mov	rsi, r12
+ 1      5     0.50    *                   mov	r15, qword ptr [r14 + 16]
+ 1      1     0.50                        jmp	.LBB3_2
+ 3      2     1.00           *            push	r15
+ 3      2     1.00           *            push	r14
+ 3      2     1.00           *            push	rbx
+ 1      1     0.25                        mov	rbx, rdi
+ 1      1     0.25                        test	rsi, rsi
+ 1      1     0.50                        je	.LBB4_6
+ 1      1     0.25                        mov	r14, rdx
+ 1      1     0.25                        mov	r15, rsi
+ 2      6     0.50    *                   cmp	qword ptr [rcx + 8], 0
+ 1      1     0.50                        je	.LBB4_7
+ 1      5     0.50    *                   mov	rsi, qword ptr [rcx + 16]
+ 1      1     0.25                        test	rsi, rsi
+ 1      1     0.50                        je	.LBB4_7
+ 1      5     0.50    *                   mov	rdi, qword ptr [rcx]
+ 1      1     0.25                        mov	rdx, r15
+ 1      1     0.25                        mov	rcx, r14
+ 5      7     1.00    *                   call	qword ptr [rip + __rust_realloc@GOTPCREL]
+ 1      1     0.25                        test	rax, rax
+ 1      1     0.50                        je	.LBB4_4
+ 1      1     1.00           *            mov	qword ptr [rbx + 8], rax
+ 1      1     1.00           *            mov	qword ptr [rbx + 16], r14
+ 1      0     0.17                        xor	eax, eax
+ 1      1     0.50                        jmp	.LBB4_12
+ 1      1     0.25                        test	r14, r14
+ 1      1     0.50                        je	.LBB4_8
+ 1      5     0.50    *                   mov	rax, qword ptr [rip + __rust_no_alloc_shim_is_unstable@GOTPCREL]
+ 1      5     0.50    *                   movzx	eax, byte ptr [rax]
+ 1      1     0.25                        mov	rdi, r14
+ 1      1     0.25                        mov	rsi, r15
+ 5      7     1.00    *                   call	qword ptr [rip + __rust_alloc@GOTPCREL]
+ 1      1     0.25                        test	rax, rax
+ 1      1     0.50                        jne	.LBB4_11
+ 1      1     1.00           *            mov	qword ptr [rbx + 8], r15
+ 1      1     1.00           *            mov	qword ptr [rbx + 16], r14
+ 1      1     0.50                        jmp	.LBB4_5
+ 1      1     1.00           *            mov	qword ptr [rbx + 8], 0
+ 1      1     0.25                        mov	eax, 1
+ 1      1     1.00           *            mov	qword ptr [rbx], rax
+ 2      6     0.50    *                   pop	rbx
+ 2      6     0.50    *                   pop	r14
+ 2      6     0.50    *                   pop	r15
+ 3      7     1.00                  U     ret
+ 1      1     0.25                        mov	rax, r15
+ 1      1     0.25                        test	rax, rax
+ 1      1     0.50                        jne	.LBB4_11
+ 1      1     0.50                        jmp	.LBB4_4
+ 3      2     1.00           *            push	r14
+ 3      2     1.00           *            push	rbx
+ 1      1     0.25                        sub	rsp, 56
+ 1      1     0.25                        inc	rsi
+ 1      1     0.50                        je	.LBB5_8
+ 1      1     0.25                        mov	rbx, rdi
+ 1      5     0.50    *                   mov	rax, qword ptr [rdi]
+ 1      1     0.50                        lea	rcx, [rax + rax]
+ 1      1     0.25                        cmp	rcx, rsi
+ 2      2     1.00                        cmova	rsi, rcx
+ 1      1     0.25                        cmp	rsi, 9
+ 1      1     0.25                        mov	r14d, 8
+ 1      1     0.50                        cmovae	r14, rsi
+ 1      1     0.25                        mov	rsi, r14
+ 1      1     0.25                        not	rsi
+ 1      1     0.50                        shr	rsi, 63
+ 1      1     0.25                        test	rax, rax
+ 1      1     0.50                        je	.LBB5_2
+ 1      5     0.50    *                   mov	rcx, qword ptr [rbx + 8]
+ 1      1     1.00           *            mov	qword ptr [rsp + 32], rcx
+ 1      1     1.00           *            mov	qword ptr [rsp + 40], 1
+ 1      1     1.00           *            mov	qword ptr [rsp + 48], rax
+ 1      1     0.50                        jmp	.LBB5_4
+ 1      1     1.00           *            mov	qword ptr [rsp + 40], 0
+ 1      1     0.50                        lea	rdi, [rsp + 8]
+ 1      1     0.50                        lea	rcx, [rsp + 32]
+ 1      1     0.25                        mov	rdx, r14
+ 4      3     1.00                        call	alloc::raw_vec::finish_grow
+ 2      6     0.50    *                   cmp	qword ptr [rsp + 8], 0
+ 1      1     0.50                        jne	.LBB5_5
+ 1      5     0.50    *                   mov	rax, qword ptr [rsp + 16]
+ 1      1     1.00           *            mov	qword ptr [rbx + 8], rax
+ 1      1     1.00           *            mov	qword ptr [rbx], r14
+ 1      1     0.25                        add	rsp, 56
+ 2      6     0.50    *                   pop	rbx
+ 2      6     0.50    *                   pop	r14
+ 3      7     1.00                  U     ret
+ 1      5     0.50    *                   mov	rdi, qword ptr [rsp + 16]
+ 1      1     0.25                        test	rdi, rdi
+ 1      1     0.50                        jne	.LBB5_6
+ 5      7     1.00    *                   call	qword ptr [rip + alloc::raw_vec::capacity_overflow@GOTPCREL]
+ 1      5     0.50    *                   mov	rsi, qword ptr [rsp + 24]
+ 5      7     1.00    *                   call	qword ptr [rip + alloc::alloc::handle_alloc_error@GOTPCREL]
+ 3      2     1.00           *            push	r14
+ 3      2     1.00           *            push	rbx
+ 1      1     0.25                        sub	rsp, 56
+ 1      1     0.25                        add	rsi, rdx
+ 1      1     0.50                        jb	.LBB6_8
+ 1      1     0.25                        mov	rbx, rdi
+ 1      5     0.50    *                   mov	rax, qword ptr [rdi]
+ 1      1     0.50                        lea	rcx, [rax + rax]
+ 1      1     0.25                        cmp	rcx, rsi
+ 2      2     1.00                        cmova	rsi, rcx
+ 1      1     0.25                        cmp	rsi, 9
+ 1      1     0.25                        mov	r14d, 8
+ 1      1     0.50                        cmovae	r14, rsi
+ 1      1     0.25                        mov	rsi, r14
+ 1      1     0.25                        not	rsi
+ 1      1     0.50                        shr	rsi, 63
+ 1      1     0.25                        test	rax, rax
+ 1      1     0.50                        je	.LBB6_2
+ 1      5     0.50    *                   mov	rcx, qword ptr [rbx + 8]
+ 1      1     1.00           *            mov	qword ptr [rsp + 32], rcx
+ 1      1     1.00           *            mov	qword ptr [rsp + 40], 1
+ 1      1     1.00           *            mov	qword ptr [rsp + 48], rax
+ 1      1     0.50                        jmp	.LBB6_4
+ 1      1     1.00           *            mov	qword ptr [rsp + 40], 0
+ 1      1     0.50                        lea	rdi, [rsp + 8]
+ 1      1     0.50                        lea	rcx, [rsp + 32]
+ 1      1     0.25                        mov	rdx, r14
+ 4      3     1.00                        call	alloc::raw_vec::finish_grow
+ 2      6     0.50    *                   cmp	qword ptr [rsp + 8], 0
+ 1      1     0.50                        jne	.LBB6_5
+ 1      5     0.50    *                   mov	rax, qword ptr [rsp + 16]
+ 1      1     1.00           *            mov	qword ptr [rbx + 8], rax
+ 1      1     1.00           *            mov	qword ptr [rbx], r14
+ 1      1     0.25                        add	rsp, 56
+ 2      6     0.50    *                   pop	rbx
+ 2      6     0.50    *                   pop	r14
+ 3      7     1.00                  U     ret
+ 1      5     0.50    *                   mov	rdi, qword ptr [rsp + 16]
+ 1      1     0.25                        test	rdi, rdi
+ 1      1     0.50                        jne	.LBB6_6
+ 5      7     1.00    *                   call	qword ptr [rip + alloc::raw_vec::capacity_overflow@GOTPCREL]
+ 1      5     0.50    *                   mov	rsi, qword ptr [rsp + 24]
+ 5      7     1.00    *                   call	qword ptr [rip + alloc::alloc::handle_alloc_error@GOTPCREL]
+ 1      1     0.25                        sub	rsp, 56
+ 1      1     0.50                        lea	rax, [rip + .L__unnamed_2]
+ 1      1     1.00           *            mov	qword ptr [rsp + 8], rax
+ 1      1     1.00           *            mov	qword ptr [rsp + 16], 1
+ 1      1     0.50                        lea	rax, [rip + .L__unnamed_3]
+ 1      1     1.00           *            mov	qword ptr [rsp + 24], rax
+ 1      0     0.17                        xorps	xmm0, xmm0
+ 2      1     1.00           *            movups	xmmword ptr [rsp + 32], xmm0
+ 1      1     0.50                        lea	rsi, [rip + .L__unnamed_1]
+ 1      1     0.50                        lea	rdx, [rsp + 8]
+ 5      7     1.00    *                   call	qword ptr [rip + core::fmt::write@GOTPCREL]
+ 1      1     0.25                        add	rsp, 56
+ 3      7     1.00                  U     ret
+
+
+Resources:
+[0]   - SKLDivider
+[1]   - SKLFPDivider
+[2]   - SKLPort0
+[3]   - SKLPort1
+[4]   - SKLPort2
+[5]   - SKLPort3
+[6]   - SKLPort4
+[7]   - SKLPort5
+[8]   - SKLPort6
+[9]   - SKLPort7
+
+
+Resource pressure per iteration:
+[0]    [1]    [2]    [3]    [4]    [5]    [6]    [7]    [8]    [9]    
+ -      -     59.02  57.00  47.00  47.98  67.00  57.01  62.97  36.02  
+
+Resource pressure by instruction:
+[0]    [1]    [2]    [3]    [4]    [5]    [6]    [7]    [8]    [9]    Instructions:
+ -      -      -      -      -      -      -     0.99   0.01    -     mov	rdx, rsi
+ -      -      -     0.99    -      -      -     0.01    -      -     lea	rsi, [rip + .L__unnamed_1]
+ -      -      -      -     0.99   0.01    -      -     1.00    -     jmp	qword ptr [rip + core::fmt::write@GOTPCREL]
+ -      -      -      -     0.01   0.99    -      -      -      -     mov	rsi, qword ptr [rdi]
+ -      -     1.00    -      -      -      -      -      -      -     test	rsi, rsi
+ -      -     1.00    -      -      -      -      -      -      -     je	.LBB1_1
+ -      -      -      -     0.01   0.99    -      -      -      -     mov	rdi, qword ptr [rdi + 8]
+ -      -      -     1.00    -      -      -      -      -      -     mov	edx, 1
+ -      -      -      -     0.99   0.01    -      -     1.00    -     jmp	qword ptr [rip + __rust_dealloc@GOTPCREL]
+ -      -     0.99    -     0.01   0.99    -     0.01   1.00    -     ret
+ -      -     0.01    -      -      -     1.00   0.99    -     1.00   push	rbp
+ -      -      -     1.00    -      -     1.00    -      -     1.00   push	r15
+ -      -      -     0.01   0.01   0.99   1.00   0.99    -      -     push	r14
+ -      -      -     0.01    -      -     1.00    -     0.99   1.00   push	rbx
+ -      -      -     1.00    -      -     1.00    -      -     1.00   push	rax
+ -      -      -     0.99    -      -      -      -     0.01    -     mov	rbx, rdi
+ -      -      -      -      -      -      -     0.01   0.99    -     cmp	esi, 128
+ -      -     0.01    -      -      -      -      -     0.99    -     jae	.LBB2_1
+ -      -      -      -     0.99   0.01    -      -      -      -     mov	rax, qword ptr [rbx + 16]
+ -      -      -     0.01   0.01   0.99    -     0.99    -      -     cmp	rax, qword ptr [rbx]
+ -      -     1.00    -      -      -      -      -      -      -     jne	.LBB2_10
+ -      -      -     0.99    -      -      -      -     0.01    -     mov	rdi, rbx
+ -      -     0.99    -      -      -      -     0.01    -      -     mov	ebp, esi
+ -      -      -     0.99    -      -      -     0.01    -      -     mov	rsi, rax
+ -      -     1.00   0.01   0.99    -     1.00    -     0.99   0.01   call	alloc::raw_vec::RawVec<T,A>::reserve_for_push
+ -      -      -      -      -      -      -     1.00    -      -     mov	esi, ebp
+ -      -      -      -     0.99   0.01    -      -      -      -     mov	rax, qword ptr [rbx + 16]
+ -      -      -      -     0.01   0.99    -      -      -      -     mov	rcx, qword ptr [rbx + 8]
+ -      -      -      -      -     0.01   1.00    -      -     0.99   mov	byte ptr [rcx + rax], sil
+ -      -      -     0.99    -      -      -     0.01    -      -     inc	rax
+ -      -      -      -     0.01   0.99   1.00    -      -      -     mov	qword ptr [rbx + 16], rax
+ -      -     1.00    -      -      -      -      -      -      -     jmp	.LBB2_11
+ -      -      -      -     0.99    -     1.00    -      -     0.01   mov	dword ptr [rsp + 4], 0
+ -      -      -      -      -      -      -      -     1.00    -     mov	eax, esi
+ -      -      -      -      -      -      -     1.00    -      -     cmp	esi, 2048
+ -      -     1.00    -      -      -      -      -      -      -     jae	.LBB2_2
+ -      -      -      -      -      -      -      -     1.00    -     shr	eax, 6
+ -      -      -     0.01    -      -      -     0.99    -      -     or	al, -64
+ -      -      -      -      -     0.01   1.00    -      -     0.99   mov	byte ptr [rsp + 4], al
+ -      -      -     0.99    -      -      -     0.01    -      -     and	sil, 63
+ -      -     0.01    -      -      -      -      -     0.99    -     or	sil, -128
+ -      -      -      -      -      -     1.00    -      -     1.00   mov	byte ptr [rsp + 5], sil
+ -      -      -      -      -      -      -     0.99   0.01    -     mov	r14d, 2
+ -      -     0.99    -      -      -      -      -     0.01    -     jmp	.LBB2_5
+ -      -      -     0.01    -      -      -     0.99    -      -     cmp	esi, 65536
+ -      -     1.00    -      -      -      -      -      -      -     jae	.LBB2_4
+ -      -      -      -      -      -      -      -     1.00    -     shr	eax, 12
+ -      -      -      -      -      -      -     1.00    -      -     or	al, -32
+ -      -      -      -     0.99    -     1.00    -      -     0.01   mov	byte ptr [rsp + 4], al
+ -      -      -     1.00    -      -      -      -      -      -     mov	eax, esi
+ -      -     0.01    -      -      -      -      -     0.99    -     shr	eax, 6
+ -      -      -      -      -      -      -     1.00    -      -     and	al, 63
+ -      -      -      -      -      -      -     1.00    -      -     or	al, -128
+ -      -      -      -      -     0.01   1.00    -      -     0.99   mov	byte ptr [rsp + 5], al
+ -      -      -     0.99    -      -      -      -     0.01    -     and	sil, 63
+ -      -      -     0.99    -      -      -     0.01    -      -     or	sil, -128
+ -      -      -      -     0.01   0.99   1.00    -      -      -     mov	byte ptr [rsp + 6], sil
+ -      -     0.99   0.01    -      -      -      -      -      -     mov	r14d, 3
+ -      -      -      -      -      -      -      -     1.00    -     jmp	.LBB2_5
+ -      -     1.00    -      -      -      -      -      -      -     shr	eax, 18
+ -      -      -      -      -      -      -     1.00    -      -     and	al, 7
+ -      -      -      -      -      -      -     1.00    -      -     or	al, -16
+ -      -      -      -     0.99    -     1.00    -      -     0.01   mov	byte ptr [rsp + 4], al
+ -      -      -     1.00    -      -      -      -      -      -     mov	eax, esi
+ -      -     0.01    -      -      -      -      -     0.99    -     shr	eax, 12
+ -      -      -     0.99    -      -      -     0.01    -      -     and	al, 63
+ -      -      -     1.00    -      -      -      -      -      -     or	al, -128
+ -      -      -      -     0.01    -     1.00    -      -     0.99   mov	byte ptr [rsp + 5], al
+ -      -     1.00    -      -      -      -      -      -      -     mov	eax, esi
+ -      -     0.99    -      -      -      -      -     0.01    -     shr	eax, 6
+ -      -     0.99   0.01    -      -      -      -      -      -     and	al, 63
+ -      -     0.01    -      -      -      -      -     0.99    -     or	al, -128
+ -      -      -      -      -     0.99   1.00    -      -     0.01   mov	byte ptr [rsp + 6], al
+ -      -      -      -      -      -      -      -     1.00    -     and	sil, 63
+ -      -      -     0.01    -      -      -     0.99    -      -     or	sil, -128
+ -      -      -      -     1.00    -     1.00    -      -      -     mov	byte ptr [rsp + 7], sil
+ -      -      -     0.99    -      -      -      -     0.01    -     mov	r14d, 4
+ -      -      -      -     0.01   0.99    -      -      -      -     mov	rax, qword ptr [rbx]
+ -      -      -      -     0.99   0.01    -      -      -      -     mov	r15, qword ptr [rbx + 16]
+ -      -      -     0.98    -      -      -     0.02    -      -     sub	rax, r15
+ -      -     0.99    -      -      -      -     0.01    -      -     cmp	rax, r14
+ -      -     1.00    -      -      -      -      -      -      -     jb	.LBB2_6
+ -      -      -      -     0.01   0.99    -      -      -      -     mov	rdi, qword ptr [rbx + 8]
+ -      -      -     0.01    -      -      -      -     0.99    -     add	rdi, r15
+ -      -      -     0.02    -      -      -     0.98    -      -     lea	rsi, [rsp + 4]
+ -      -      -      -      -      -      -      -     1.00    -     mov	rdx, r14
+ -      -      -      -      -     1.00   1.00   1.00   1.00   1.00   call	qword ptr [rip + memcpy@GOTPCREL]
+ -      -     0.01   0.99    -      -      -      -      -      -     add	r15, r14
+ -      -      -      -     1.00    -     1.00    -      -      -     mov	qword ptr [rbx + 16], r15
+ -      -      -      -      -      -      -      -      -      -     xor	eax, eax
+ -      -     0.01    -      -      -      -     0.99    -      -     add	rsp, 8
+ -      -      -     0.99    -     1.00    -      -     0.01    -     pop	rbx
+ -      -      -     0.01    -     1.00    -     0.99    -      -     pop	r14
+ -      -     0.01    -     0.99   0.01    -     0.99    -      -     pop	r15
+ -      -     0.97    -      -     1.00    -     0.02   0.01    -     pop	rbp
+ -      -     0.99   0.01   0.99   0.01    -      -     1.00    -     ret
+ -      -     0.01   0.99    -      -      -      -      -      -     mov	rdi, rbx
+ -      -      -     0.02    -      -      -     0.01   0.97    -     mov	rsi, r15
+ -      -      -     0.99    -      -      -      -     0.01    -     mov	rdx, r14
+ -      -     0.01   0.01    -      -     1.00   0.98   1.00   1.00   call	alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle
+ -      -      -      -     0.99   0.01    -      -      -      -     mov	r15, qword ptr [rbx + 16]
+ -      -     0.99    -      -      -      -      -     0.01    -     jmp	.LBB2_7
+ -      -      -     0.99    -      -     1.00   0.01    -     1.00   push	r15
+ -      -     0.99   0.01    -     1.00   1.00    -      -      -     push	r14
+ -      -      -      -     1.00    -     1.00   0.01   0.99    -     push	r12
+ -      -      -     0.01    -      -     1.00   0.99    -     1.00   push	rbx
+ -      -      -     0.99    -     1.00   1.00    -     0.01    -     push	rax
+ -      -     0.98    -      -      -      -     0.01   0.01    -     mov	rbx, rdx
+ -      -      -     0.01    -      -      -     0.01   0.98    -     mov	r14, rdi
+ -      -      -      -     0.02   0.98    -      -      -      -     mov	rax, qword ptr [rdi]
+ -      -      -      -     0.01   0.99    -      -      -      -     mov	r15, qword ptr [rdi + 16]
+ -      -     0.02    -      -      -      -     0.98    -      -     sub	rax, r15
+ -      -      -     0.01    -      -      -     0.98   0.01    -     cmp	rax, rdx
+ -      -     1.00    -      -      -      -      -      -      -     jb	.LBB3_1
+ -      -      -      -     0.98   0.02    -      -      -      -     mov	rdi, qword ptr [r14 + 8]
+ -      -      -     0.99    -      -      -      -     0.01    -     add	rdi, r15
+ -      -      -     0.01    -      -      -      -     0.99    -     mov	rdx, rbx
+ -      -      -      -     1.00    -     1.00   1.00   1.00   1.00   call	qword ptr [rip + memcpy@GOTPCREL]
+ -      -     0.01   0.97    -      -      -     0.02    -      -     add	r15, rbx
+ -      -      -      -      -     1.00   1.00    -      -      -     mov	qword ptr [r14 + 16], r15
+ -      -      -      -      -      -      -      -      -      -     xor	eax, eax
+ -      -      -     1.00    -      -      -      -      -      -     add	rsp, 8
+ -      -     1.00    -     1.00    -      -      -      -      -     pop	rbx
+ -      -      -      -      -     1.00    -     0.01   0.99    -     pop	r12
+ -      -      -      -     0.01   0.99    -     0.99   0.01    -     pop	r14
+ -      -      -     0.98    -     1.00    -     0.02    -      -     pop	r15
+ -      -      -     1.00   1.00    -      -      -     1.00    -     ret
+ -      -     0.98   0.02    -      -      -      -      -      -     mov	rdi, r14
+ -      -     0.98    -      -      -      -     0.01   0.01    -     mov	r12, rsi
+ -      -     0.01   0.98    -      -      -      -     0.01    -     mov	rsi, r15
+ -      -      -     0.01    -      -      -     0.99    -      -     mov	rdx, rbx
+ -      -     0.01    -      -      -     1.00   1.00   0.99   1.00   call	alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle
+ -      -     0.01   0.01    -      -      -     0.98    -      -     mov	rsi, r12
+ -      -      -      -     1.00    -      -      -      -      -     mov	r15, qword ptr [r14 + 16]
+ -      -     1.00    -      -      -      -      -      -      -     jmp	.LBB3_2
+ -      -     0.01   0.99    -      -     1.00    -      -     1.00   push	r15
+ -      -     0.98    -      -     1.00   1.00   0.01   0.01    -     push	r14
+ -      -      -     0.01   1.00    -     1.00   0.99    -      -     push	rbx
+ -      -     0.02    -      -      -      -     0.98    -      -     mov	rbx, rdi
+ -      -      -     1.00    -      -      -      -      -      -     test	rsi, rsi
+ -      -     0.99    -      -      -      -      -     0.01    -     je	.LBB4_6
+ -      -     0.99    -      -      -      -     0.01    -      -     mov	r14, rdx
+ -      -     0.02    -      -      -      -      -     0.98    -     mov	r15, rsi
+ -      -      -     0.02   1.00    -      -     0.98    -      -     cmp	qword ptr [rcx + 8], 0
+ -      -     0.01    -      -      -      -      -     0.99    -     je	.LBB4_7
+ -      -      -      -      -     1.00    -      -      -      -     mov	rsi, qword ptr [rcx + 16]
+ -      -      -     0.99    -      -      -     0.01    -      -     test	rsi, rsi
+ -      -     0.99    -      -      -      -      -     0.01    -     je	.LBB4_7
+ -      -      -      -     1.00    -      -      -      -      -     mov	rdi, qword ptr [rcx]
+ -      -     0.01   0.98    -      -      -     0.01    -      -     mov	rdx, r15
+ -      -      -      -      -      -      -      -     1.00    -     mov	rcx, r14
+ -      -     0.01   0.99    -     1.00   1.00    -     1.00   1.00   call	qword ptr [rip + __rust_realloc@GOTPCREL]
+ -      -     1.00    -      -      -      -      -      -      -     test	rax, rax
+ -      -      -      -      -      -      -      -     1.00    -     je	.LBB4_4
+ -      -      -      -      -      -     1.00    -      -     1.00   mov	qword ptr [rbx + 8], rax
+ -      -      -      -      -     1.00   1.00    -      -      -     mov	qword ptr [rbx + 16], r14
+ -      -      -      -      -      -      -      -      -      -     xor	eax, eax
+ -      -     1.00    -      -      -      -      -      -      -     jmp	.LBB4_12
+ -      -      -      -      -      -      -     1.00    -      -     test	r14, r14
+ -      -     0.01    -      -      -      -      -     0.99    -     je	.LBB4_8
+ -      -      -      -     1.00    -      -      -      -      -     mov	rax, qword ptr [rip + __rust_no_alloc_shim_is_unstable@GOTPCREL]
+ -      -      -      -     0.98   0.02    -      -      -      -     movzx	eax, byte ptr [rax]
+ -      -      -     1.00    -      -      -      -      -      -     mov	rdi, r14
+ -      -      -     0.01    -      -      -     0.99    -      -     mov	rsi, r15
+ -      -      -     0.99   1.00    -     1.00   0.01   1.00   1.00   call	qword ptr [rip + __rust_alloc@GOTPCREL]
+ -      -      -     0.01    -      -      -      -     0.99    -     test	rax, rax
+ -      -     0.99    -      -      -      -      -     0.01    -     jne	.LBB4_11
+ -      -      -      -      -     1.00   1.00    -      -      -     mov	qword ptr [rbx + 8], r15
+ -      -      -      -     1.00    -     1.00    -      -      -     mov	qword ptr [rbx + 16], r14
+ -      -     0.01    -      -      -      -      -     0.99    -     jmp	.LBB4_5
+ -      -      -      -      -      -     1.00    -      -     1.00   mov	qword ptr [rbx + 8], 0
+ -      -      -     0.99    -      -      -     0.01    -      -     mov	eax, 1
+ -      -      -      -     1.00    -     1.00    -      -      -     mov	qword ptr [rbx], rax
+ -      -     0.01    -     1.00    -      -     0.99    -      -     pop	rbx
+ -      -     0.99   0.01    -     1.00    -      -      -      -     pop	r14
+ -      -     0.01   0.98   0.98   0.02    -     0.01    -      -     pop	r15
+ -      -     0.98    -     0.02   0.98    -     0.02   1.00    -     ret
+ -      -      -      -      -      -      -     1.00    -      -     mov	rax, r15
+ -      -     0.01    -      -      -      -     0.98   0.01    -     test	rax, rax
+ -      -     0.99    -      -      -      -      -     0.01    -     jne	.LBB4_11
+ -      -     0.99    -      -      -      -      -     0.01    -     jmp	.LBB4_4
+ -      -      -     1.00    -      -     1.00    -      -     1.00   push	r14
+ -      -      -     0.98   0.01    -     1.00   0.01   0.01   0.99   push	rbx
+ -      -      -     1.00    -      -      -      -      -      -     sub	rsp, 56
+ -      -      -     0.01    -      -      -     0.99    -      -     inc	rsi
+ -      -     1.00    -      -      -      -      -      -      -     je	.LBB5_8
+ -      -      -      -      -      -      -     0.99   0.01    -     mov	rbx, rdi
+ -      -      -      -      -     1.00    -      -      -      -     mov	rax, qword ptr [rdi]
+ -      -      -     0.02    -      -      -     0.98    -      -     lea	rcx, [rax + rax]
+ -      -      -     0.01    -      -      -      -     0.99    -     cmp	rcx, rsi
+ -      -     0.02    -      -      -      -      -     1.98    -     cmova	rsi, rcx
+ -      -      -      -      -      -      -     0.02   0.98    -     cmp	rsi, 9
+ -      -      -     0.01    -      -      -     0.01   0.98    -     mov	r14d, 8
+ -      -     1.00    -      -      -      -      -      -      -     cmovae	r14, rsi
+ -      -      -     0.01    -      -      -     0.99    -      -     mov	rsi, r14
+ -      -      -      -      -      -      -     0.02   0.98    -     not	rsi
+ -      -     0.01    -      -      -      -      -     0.99    -     shr	rsi, 63
+ -      -     0.02   0.97    -      -      -     0.01    -      -     test	rax, rax
+ -      -     1.00    -      -      -      -      -      -      -     je	.LBB5_2
+ -      -      -      -     0.02   0.98    -      -      -      -     mov	rcx, qword ptr [rbx + 8]
+ -      -      -      -      -     0.99   1.00    -      -     0.01   mov	qword ptr [rsp + 32], rcx
+ -      -      -      -      -      -     1.00    -      -     1.00   mov	qword ptr [rsp + 40], 1
+ -      -      -      -      -      -     1.00    -      -     1.00   mov	qword ptr [rsp + 48], rax
+ -      -     0.99    -      -      -      -      -     0.01    -     jmp	.LBB5_4
+ -      -      -      -      -     1.00   1.00    -      -      -     mov	qword ptr [rsp + 40], 0
+ -      -      -     0.99    -      -      -     0.01    -      -     lea	rdi, [rsp + 8]
+ -      -      -     0.01    -      -      -     0.99    -      -     lea	rcx, [rsp + 32]
+ -      -     0.98   0.01    -      -      -      -     0.01    -     mov	rdx, r14
+ -      -     0.99   0.01   0.01    -     1.00   0.01   0.99   0.99   call	alloc::raw_vec::finish_grow
+ -      -     0.98    -     0.99   0.01    -      -     0.02    -     cmp	qword ptr [rsp + 8], 0
+ -      -     1.00    -      -      -      -      -      -      -     jne	.LBB5_5
+ -      -      -      -     0.01   0.99    -      -      -      -     mov	rax, qword ptr [rsp + 16]
+ -      -      -      -     0.01   0.98   1.00    -      -     0.01   mov	qword ptr [rbx + 8], rax
+ -      -      -      -     0.99    -     1.00    -      -     0.01   mov	qword ptr [rbx], r14
+ -      -     0.01    -      -      -      -     0.98   0.01    -     add	rsp, 56
+ -      -      -     0.98   0.99   0.01    -     0.01   0.01    -     pop	rbx
+ -      -      -     0.02   0.98   0.02    -     0.98    -      -     pop	r14
+ -      -      -     0.02   1.00    -      -     0.98   1.00    -     ret
+ -      -      -      -     0.01   0.99    -      -      -      -     mov	rdi, qword ptr [rsp + 16]
+ -      -     0.01   0.98    -      -      -     0.01    -      -     test	rdi, rdi
+ -      -     0.02    -      -      -      -      -     0.98    -     jne	.LBB5_6
+ -      -      -     0.01   0.99   0.01   1.00   0.99   1.00   1.00   call	qword ptr [rip + alloc::raw_vec::capacity_overflow@GOTPCREL]
+ -      -      -      -     0.01   0.99    -      -      -      -     mov	rsi, qword ptr [rsp + 24]
+ -      -      -     0.99   0.99   0.01   1.00   0.01   1.00   1.00   call	qword ptr [rip + alloc::alloc::handle_alloc_error@GOTPCREL]
+ -      -     0.98   0.01   0.01    -     1.00   0.01    -     0.99   push	r14
+ -      -     0.01   0.01    -     0.99   1.00   0.98    -     0.01   push	rbx
+ -      -      -      -      -      -      -     0.99   0.01    -     sub	rsp, 56
+ -      -      -     0.99    -      -      -     0.01    -      -     add	rsi, rdx
+ -      -     1.00    -      -      -      -      -      -      -     jb	.LBB6_8
+ -      -     0.98   0.01    -      -      -      -     0.01    -     mov	rbx, rdi
+ -      -      -      -     0.99   0.01    -      -      -      -     mov	rax, qword ptr [rdi]
+ -      -      -     0.99    -      -      -     0.01    -      -     lea	rcx, [rax + rax]
+ -      -     0.99    -      -      -      -      -     0.01    -     cmp	rcx, rsi
+ -      -     2.00    -      -      -      -      -      -      -     cmova	rsi, rcx
+ -      -      -      -      -      -      -     1.00    -      -     cmp	rsi, 9
+ -      -      -     0.98    -      -      -     0.01   0.01    -     mov	r14d, 8
+ -      -      -      -      -      -      -      -     1.00    -     cmovae	r14, rsi
+ -      -      -     0.99    -      -      -      -     0.01    -     mov	rsi, r14
+ -      -     0.01   0.99    -      -      -      -      -      -     not	rsi
+ -      -     1.00    -      -      -      -      -      -      -     shr	rsi, 63
+ -      -      -      -      -      -      -      -     1.00    -     test	rax, rax
+ -      -     0.01    -      -      -      -      -     0.99    -     je	.LBB6_2
+ -      -      -      -     0.01   0.99    -      -      -      -     mov	rcx, qword ptr [rbx + 8]
+ -      -      -      -      -      -     1.00    -      -     1.00   mov	qword ptr [rsp + 32], rcx
+ -      -      -      -     0.99   0.01   1.00    -      -      -     mov	qword ptr [rsp + 40], 1
+ -      -      -      -     0.01    -     1.00    -      -     0.99   mov	qword ptr [rsp + 48], rax
+ -      -     0.02    -      -      -      -      -     0.98    -     jmp	.LBB6_4
+ -      -      -      -      -     0.99   1.00    -      -     0.01   mov	qword ptr [rsp + 40], 0
+ -      -      -     0.99    -      -      -     0.01    -      -     lea	rdi, [rsp + 8]
+ -      -      -     0.01    -      -      -     0.99    -      -     lea	rcx, [rsp + 32]
+ -      -      -      -      -      -      -     1.00    -      -     mov	rdx, r14
+ -      -     0.01    -     1.00    -     1.00   1.00   0.99    -     call	alloc::raw_vec::finish_grow
+ -      -      -     1.00    -     1.00    -      -      -      -     cmp	qword ptr [rsp + 8], 0
+ -      -     0.99    -      -      -      -      -     0.01    -     jne	.LBB6_5
+ -      -      -      -     0.99   0.01    -      -      -      -     mov	rax, qword ptr [rsp + 16]
+ -      -      -      -      -      -     1.00    -      -     1.00   mov	qword ptr [rbx + 8], rax
+ -      -      -      -      -      -     1.00    -      -     1.00   mov	qword ptr [rbx], r14
+ -      -     0.99   0.01    -      -      -      -      -      -     add	rsp, 56
+ -      -      -     0.01   0.01   0.99    -      -     0.99    -     pop	rbx
+ -      -      -     1.00   0.01   0.99    -      -      -      -     pop	r14
+ -      -      -      -     0.99   0.01    -     1.00   1.00    -     ret
+ -      -      -      -     0.99   0.01    -      -      -      -     mov	rdi, qword ptr [rsp + 16]
+ -      -     0.99    -      -      -      -     0.01    -      -     test	rdi, rdi
+ -      -     0.01    -      -      -      -      -     0.99    -     jne	.LBB6_6
+ -      -      -     0.99   0.01   0.99   1.00   0.01   1.00   1.00   call	qword ptr [rip + alloc::raw_vec::capacity_overflow@GOTPCREL]
+ -      -      -      -     0.99   0.01    -      -      -      -     mov	rsi, qword ptr [rsp + 24]
+ -      -     1.00    -     0.01   0.99   1.00    -     1.00   1.00   call	qword ptr [rip + alloc::alloc::handle_alloc_error@GOTPCREL]
+ -      -     1.00    -      -      -      -      -      -      -     sub	rsp, 56
+ -      -      -     0.01    -      -      -     0.99    -      -     lea	rax, [rip + .L__unnamed_2]
+ -      -      -      -     0.99   0.01   1.00    -      -      -     mov	qword ptr [rsp + 8], rax
+ -      -      -      -      -      -     1.00    -      -     1.00   mov	qword ptr [rsp + 16], 1
+ -      -      -     0.99    -      -      -     0.01    -      -     lea	rax, [rip + .L__unnamed_3]
+ -      -      -      -     0.99   0.01   1.00    -      -      -     mov	qword ptr [rsp + 24], rax
+ -      -      -      -      -      -      -      -      -      -     xorps	xmm0, xmm0
+ -      -      -      -      -      -     1.00    -      -     1.00   movups	xmmword ptr [rsp + 32], xmm0
+ -      -      -     0.01    -      -      -     0.99    -      -     lea	rsi, [rip + .L__unnamed_1]
+ -      -      -     0.01    -      -      -     0.99    -      -     lea	rdx, [rsp + 8]
+ -      -      -     0.01   1.00   1.00   1.00   0.99   1.00    -     call	qword ptr [rip + core::fmt::write@GOTPCREL]
+ -      -      -     0.99    -      -      -     0.01    -      -     add	rsp, 56
+ -      -     1.00    -     0.01   0.99    -      -     1.00    -     ret

@@ -1,0 +1,32 @@
+; libtest::my_test_func
+; Function Attrs: nonlazybind uwtable
+define noundef zeroext i1 @libtest::my_test_func(ptr noalias nocapture noundef align 8 dereferenceable(24) %buffer) unnamed_addr #2 {
+bb1.i:
+  tail call void @llvm.experimental.noalias.scope.decl(metadata !12)
+  tail call void @llvm.experimental.noalias.scope.decl(metadata !15)
+  tail call void @llvm.experimental.noalias.scope.decl(metadata !18)
+  tail call void @llvm.experimental.noalias.scope.decl(metadata !21)
+  tail call void @llvm.experimental.noalias.scope.decl(metadata !24)
+  %0 = getelementptr inbounds %"alloc::vec::Vec<u8>", ptr %buffer, i64 0, i32 1
+  %len.i.i.i.i.i.i = load i64, ptr %0, align 8, !alias.scope !27, !noalias !28, !noundef !4
+  %1 = load i64, ptr %buffer, align 8, !alias.scope !32, !noalias !28, !noundef !4
+  %_7.i.i.i.i.i.i = sub i64 %1, %len.i.i.i.i.i.i
+  %_5.i.i.i.i.i.i = icmp ult i64 %_7.i.i.i.i.i.i, 20
+  br i1 %_5.i.i.i.i.i.i, label %bb1.i.i.i.i.i.i, label %"<&mut W as core::fmt::Write::write_fmt::SpecWriteFmt>::spec_write_fmt.exit"
+
+bb1.i.i.i.i.i.i:                                  ; preds = %bb1.i
+; call alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle
+  tail call fastcc void @"alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle"(ptr noalias noundef nonnull align 8 dereferenceable(16) %buffer, i64 noundef %len.i.i.i.i.i.i, i64 noundef 20), !noalias !28
+  %len.pre.i.i.i.i.i = load i64, ptr %0, align 8, !alias.scope !27, !noalias !28
+  br label %"<&mut W as core::fmt::Write::write_fmt::SpecWriteFmt>::spec_write_fmt.exit"
+
+"<&mut W as core::fmt::Write::write_fmt::SpecWriteFmt>::spec_write_fmt.exit": ; preds = %bb1.i, %bb1.i.i.i.i.i.i
+  %len.i.i.i.i.i = phi i64 [ %len.i.i.i.i.i.i, %bb1.i ], [ %len.pre.i.i.i.i.i, %bb1.i.i.i.i.i.i ]
+  %2 = getelementptr inbounds i8, ptr %buffer, i64 8
+  %self1.i1.i.i.i.i = load ptr, ptr %2, align 8, !alias.scope !27, !noalias !28, !nonnull !4, !noundef !4
+  %dst.i.i.i.i.i = getelementptr inbounds i8, ptr %self1.i1.i.i.i.i, i64 %len.i.i.i.i.i
+  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 1 dereferenceable(20) %dst.i.i.i.i.i, ptr noundef nonnull align 1 dereferenceable(20) @alloc_670087e04a011ad5213914c9f897ccd6, i64 20, i1 false), !noalias !35
+  %3 = add i64 %len.i.i.i.i.i, 20
+  store i64 %3, ptr %0, align 8, !alias.scope !27, !noalias !28
+  ret i1 false
+}
