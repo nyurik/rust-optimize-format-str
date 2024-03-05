@@ -8,14 +8,14 @@ core::fmt::Write::write_fmt:
 	jmp qword ptr [rip + core::fmt::write@GOTPCREL]
 
 core::ptr::drop_in_place<alloc::string::String>:
-		// /home/nyurik/dev/rust/rust/library/core/src/ptr/mod.rs : 509
+		// /home/nyurik/dev/rust/rust/library/core/src/ptr/mod.rs : 515
 		pub unsafe fn drop_in_place<T: ?Sized>(to_drop: *mut T) {
 	mov rsi, qword ptr [rdi]
 		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 257
 		if T::IS_ZST || self.cap.0 == 0 {
 	test rsi, rsi
 	je .LBB1_1
-		// /home/nyurik/dev/rust/rust/library/core/src/ptr/mod.rs : 509
+		// /home/nyurik/dev/rust/rust/library/core/src/ptr/mod.rs : 515
 		pub unsafe fn drop_in_place<T: ?Sized>(to_drop: *mut T) {
 	mov rdi, qword ptr [rdi + 8]
 		// /home/nyurik/dev/rust/rust/library/alloc/src/alloc.rs : 117
@@ -23,12 +23,12 @@ core::ptr::drop_in_place<alloc::string::String>:
 	mov edx, 1
 	jmp qword ptr [rip + __rust_dealloc@GOTPCREL]
 .LBB1_1:
-		// /home/nyurik/dev/rust/rust/library/core/src/ptr/mod.rs : 509
+		// /home/nyurik/dev/rust/rust/library/core/src/ptr/mod.rs : 515
 		pub unsafe fn drop_in_place<T: ?Sized>(to_drop: *mut T) {
 	ret
 
 <alloc::string::String as core::fmt::Write>::write_char:
-		// /home/nyurik/dev/rust/rust/library/alloc/src/string.rs : 2974
+		// /home/nyurik/dev/rust/rust/library/alloc/src/string.rs : 2904
 		fn write_char(&mut self, c: char) -> fmt::Result {
 	push rbp
 	push r15
@@ -40,35 +40,35 @@ core::ptr::drop_in_place<alloc::string::String>:
 		if code < MAX_ONE_B {
 	cmp esi, 128
 	jae .LBB2_1
-		// /home/nyurik/dev/rust/rust/library/alloc/src/vec/mod.rs : 1921
+		// /home/nyurik/dev/rust/rust/library/alloc/src/vec/mod.rs : 1923
 		if self.len == self.buf.capacity() {
 	mov rax, qword ptr [rbx + 16]
 	cmp rax, qword ptr [rbx]
 	jne .LBB2_10
-		// /home/nyurik/dev/rust/rust/library/alloc/src/vec/mod.rs : 1922
+		// /home/nyurik/dev/rust/rust/library/alloc/src/vec/mod.rs : 1924
 		self.buf.reserve_for_push(self.len);
 	mov rdi, rbx
 	mov ebp, esi
 	mov rsi, rax
 	call alloc::raw_vec::RawVec<T,A>::reserve_for_push
 	mov esi, ebp
-		// /home/nyurik/dev/rust/rust/library/alloc/src/vec/mod.rs : 1925
+		// /home/nyurik/dev/rust/rust/library/alloc/src/vec/mod.rs : 1927
 		let end = self.as_mut_ptr().add(self.len);
 	mov rax, qword ptr [rbx + 16]
 .LBB2_10:
 		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 235
 		self.ptr.as_ptr()
 	mov rcx, qword ptr [rbx + 8]
-		// /home/nyurik/dev/rust/rust/library/core/src/ptr/mod.rs : 1437
+		// /home/nyurik/dev/rust/rust/library/core/src/ptr/mod.rs : 1469
 		intrinsics::write_via_move(dst, src)
 	mov byte ptr [rcx + rax], sil
-		// /home/nyurik/dev/rust/rust/library/alloc/src/vec/mod.rs : 1927
+		// /home/nyurik/dev/rust/rust/library/alloc/src/vec/mod.rs : 1929
 		self.len += 1;
 	inc rax
 	mov qword ptr [rbx + 16], rax
 	jmp .LBB2_11
 .LBB2_1:
-		// /home/nyurik/dev/rust/rust/library/alloc/src/string.rs : 1347
+		// /home/nyurik/dev/rust/rust/library/alloc/src/string.rs : 1348
 		_ => self.vec.extend_from_slice(ch.encode_utf8(&mut [0; 4]).as_bytes()),
 	mov dword ptr [rsp + 4], 0
 		// /home/nyurik/dev/rust/rust/library/core/src/char/methods.rs : 1776
@@ -159,20 +159,20 @@ core::ptr::drop_in_place<alloc::string::String>:
 	jb .LBB2_6
 .LBB2_7:
 	mov rdi, qword ptr [rbx + 8]
-		// /home/nyurik/dev/rust/rust/library/core/src/ptr/mut_ptr.rs : 1045
+		// /home/nyurik/dev/rust/rust/library/core/src/ptr/mut_ptr.rs : 1046
 		unsafe { intrinsics::offset(self, count) }
 	add rdi, r15
 	lea rsi, [rsp + 4]
-		// /home/nyurik/dev/rust/rust/library/core/src/intrinsics.rs : 2806
+		// /home/nyurik/dev/rust/rust/library/core/src/intrinsics.rs : 2922
 		copy_nonoverlapping(src, dst, count)
 	mov rdx, r14
 	call qword ptr [rip + memcpy@GOTPCREL]
-		// /home/nyurik/dev/rust/rust/library/alloc/src/vec/mod.rs : 2038
+		// /home/nyurik/dev/rust/rust/library/alloc/src/vec/mod.rs : 2040
 		self.len += count;
 	add r15, r14
 	mov qword ptr [rbx + 16], r15
 .LBB2_11:
-		// /home/nyurik/dev/rust/rust/library/alloc/src/string.rs : 2977
+		// /home/nyurik/dev/rust/rust/library/alloc/src/string.rs : 2907
 		}
 	xor eax, eax
 	add rsp, 8
@@ -188,13 +188,13 @@ core::ptr::drop_in_place<alloc::string::String>:
 	mov rsi, r15
 	mov rdx, r14
 	call alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle
-		// /home/nyurik/dev/rust/rust/library/alloc/src/vec/mod.rs : 2145
+		// /home/nyurik/dev/rust/rust/library/alloc/src/vec/mod.rs : 2148
 		self.len
 	mov r15, qword ptr [rbx + 16]
 	jmp .LBB2_7
 
 <alloc::string::String as core::fmt::Write>::write_str:
-		// /home/nyurik/dev/rust/rust/library/alloc/src/string.rs : 2968
+		// /home/nyurik/dev/rust/rust/library/alloc/src/string.rs : 2898
 		fn write_str(&mut self, s: &str) -> fmt::Result {
 	push r15
 	push r14
@@ -220,18 +220,18 @@ core::ptr::drop_in_place<alloc::string::String>:
 	jb .LBB3_1
 .LBB3_2:
 	mov rdi, qword ptr [r14 + 8]
-		// /home/nyurik/dev/rust/rust/library/core/src/ptr/mut_ptr.rs : 1045
+		// /home/nyurik/dev/rust/rust/library/core/src/ptr/mut_ptr.rs : 1046
 		unsafe { intrinsics::offset(self, count) }
 	add rdi, r15
-		// /home/nyurik/dev/rust/rust/library/core/src/intrinsics.rs : 2806
+		// /home/nyurik/dev/rust/rust/library/core/src/intrinsics.rs : 2922
 		copy_nonoverlapping(src, dst, count)
 	mov rdx, rbx
 	call qword ptr [rip + memcpy@GOTPCREL]
-		// /home/nyurik/dev/rust/rust/library/alloc/src/vec/mod.rs : 2038
+		// /home/nyurik/dev/rust/rust/library/alloc/src/vec/mod.rs : 2040
 		self.len += count;
 	add r15, rbx
 	mov qword ptr [r14 + 16], r15
-		// /home/nyurik/dev/rust/rust/library/alloc/src/string.rs : 2971
+		// /home/nyurik/dev/rust/rust/library/alloc/src/string.rs : 2901
 		}
 	xor eax, eax
 	add rsp, 8
@@ -249,7 +249,7 @@ core::ptr::drop_in_place<alloc::string::String>:
 	mov rdx, rbx
 	call alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle
 	mov rsi, r12
-		// /home/nyurik/dev/rust/rust/library/alloc/src/vec/mod.rs : 2145
+		// /home/nyurik/dev/rust/rust/library/alloc/src/vec/mod.rs : 2148
 		self.len
 	mov r15, qword ptr [r14 + 16]
 	jmp .LBB3_2
@@ -312,7 +312,7 @@ alloc::raw_vec::finish_grow:
 	mov qword ptr [rbx + 16], r14
 	jmp .LBB4_5
 .LBB4_6:
-		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 1963
+		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 1964
 		Err(e) => Err(From::from(e)),
 	mov qword ptr [rbx + 8], 0
 .LBB4_5:
@@ -368,25 +368,24 @@ alloc::raw_vec::RawVec<T,A>::reserve_for_push:
 		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 269
 		Some((self.ptr.cast().into(), layout))
 	mov qword ptr [rsp + 32], rcx
-	mov qword ptr [rsp + 40], 1
 	mov qword ptr [rsp + 48], rax
+	mov eax, 1
 	jmp .LBB5_4
 .LBB5_2:
-		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 258
-		None
-	mov qword ptr [rsp + 40], 0
+	xor eax, eax
 .LBB5_4:
+	mov qword ptr [rsp + 40], rax
 	lea rdi, [rsp + 8]
 	lea rcx, [rsp + 32]
 		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 434
 		let ptr = finish_grow(new_layout, self.current_memory(), &mut self.alloc)?;
 	mov rdx, r14
 	call alloc::raw_vec::finish_grow
-		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 1950
+		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 1951
 		match self {
 	cmp qword ptr [rsp + 8], 0
 	jne .LBB5_5
-		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 1951
+		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 1952
 		Ok(v) => ControlFlow::Continue(v),
 	mov rax, qword ptr [rsp + 16]
 		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 402
@@ -402,7 +401,7 @@ alloc::raw_vec::RawVec<T,A>::reserve_for_push:
 	pop r14
 	ret
 .LBB5_5:
-		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 1952
+		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 1953
 		Err(e) => ControlFlow::Break(Err(e)),
 	mov rdi, qword ptr [rsp + 16]
 		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 827
@@ -456,25 +455,24 @@ alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle:
 		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 269
 		Some((self.ptr.cast().into(), layout))
 	mov qword ptr [rsp + 32], rcx
-	mov qword ptr [rsp + 40], 1
 	mov qword ptr [rsp + 48], rax
+	mov eax, 1
 	jmp .LBB6_4
 .LBB6_2:
-		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 258
-		None
-	mov qword ptr [rsp + 40], 0
+	xor eax, eax
 .LBB6_4:
+	mov qword ptr [rsp + 40], rax
 	lea rdi, [rsp + 8]
 	lea rcx, [rsp + 32]
 		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 434
 		let ptr = finish_grow(new_layout, self.current_memory(), &mut self.alloc)?;
 	mov rdx, r14
 	call alloc::raw_vec::finish_grow
-		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 1950
+		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 1951
 		match self {
 	cmp qword ptr [rsp + 8], 0
 	jne .LBB6_5
-		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 1951
+		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 1952
 		Ok(v) => ControlFlow::Continue(v),
 	mov rax, qword ptr [rsp + 16]
 		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 402
@@ -490,7 +488,7 @@ alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle:
 	pop r14
 	ret
 .LBB6_5:
-		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 1952
+		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 1953
 		Err(e) => ControlFlow::Break(Err(e)),
 	mov rdi, qword ptr [rsp + 16]
 		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 827
@@ -509,9 +507,9 @@ alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle:
 		Err(AllocError { layout, .. }) => handle_alloc_error(layout),
 	call qword ptr [rip + alloc::alloc::handle_alloc_error@GOTPCREL]
 
-libtest::my_test_func:
-		// /home/nyurik/dev/rust/temp/libtest2/src/lib.rs : 7
-		pub fn my_test_func(buffer: &mut String) -> core::fmt::Result {
+libtest::my_test_func_with_simple_str:
+		// /home/nyurik/dev/rust/temp/rust-optimize-format-str/str/src/lib.rs : 7
+		pub fn my_test_func_with_simple_str(buffer: &mut String) -> core::fmt::Result {
 	sub rsp, 56
 		// /home/nyurik/dev/rust/rust/library/core/src/fmt/mod.rs : 325
 		Arguments { pieces, fmt: None, args: &[] }
@@ -527,7 +525,7 @@ libtest::my_test_func:
 	lea rsi, [rip + .L__unnamed_1]
 	lea rdx, [rsp + 8]
 	call qword ptr [rip + core::fmt::write@GOTPCREL]
-		// /home/nyurik/dev/rust/temp/libtest2/src/lib.rs : 9
+		// /home/nyurik/dev/rust/temp/rust-optimize-format-str/str/src/lib.rs : 9
 		}
 	add rsp, 56
 	ret

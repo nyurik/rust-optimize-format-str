@@ -1,6 +1,6 @@
 // WARNING: This output format is intended for human consumers only
 // and is subject to change without notice. Knock yourself out.
-fn my_test_func(_1: &mut String, _2: i32) -> Result<(), core::fmt::Error> {
+fn my_test_func_with_param(_1: &mut String, _2: i32) -> Result<(), core::fmt::Error> {
     debug buffer => _1;
     debug value => _2;
     let mut _0: core::result::Result<(), core::fmt::Error>;
@@ -51,7 +51,7 @@ fn my_test_func(_1: &mut String, _2: i32) -> Result<(), core::fmt::Error> {
     bb0: {
         StorageLive(_3);
         StorageLive(_4);
-        _4 = const {alloc3<imm>: &[&str; 2]} as &[&str] (PointerCoercion(Unsize));
+        _4 = const {alloc5<imm>: &[&str; 2]} as &[&str] (PointerCoercion(Unsize));
         StorageLive(_5);
         StorageLive(_6);
         StorageLive(_7);
@@ -78,7 +78,7 @@ fn my_test_func(_1: &mut String, _2: i32) -> Result<(), core::fmt::Error> {
         StorageLive(_13);
         _14 = Len((*_5));
         _13 = Lt(const 2_usize, _14);
-        switchInt(move _13) -> [0: bb1, otherwise: bb2];
+        switchInt(move _13) -> [0: bb1, otherwise: bb3];
     }
 
     bb1: {
@@ -86,23 +86,27 @@ fn my_test_func(_1: &mut String, _2: i32) -> Result<(), core::fmt::Error> {
         StorageLive(_16);
         _16 = Add(_14, const 1_usize);
         _15 = Gt(const 2_usize, move _16);
-        switchInt(move _15) -> [0: bb3, otherwise: bb2];
+        switchInt(move _15) -> [0: bb4, otherwise: bb2];
     }
 
     bb2: {
         StorageDead(_16);
+        goto -> bb3;
+    }
+
+    bb3: {
         StorageLive(_18);
         StorageLive(_19);
-        _19 = const {alloc5<imm>: &[&str; 1]} as &[&str] (PointerCoercion(Unsize));
+        _19 = const {alloc7<imm>: &[&str; 1]} as &[&str] (PointerCoercion(Unsize));
         StorageLive(_20);
-        _20 = const {alloc7<imm>: &[core::fmt::rt::Argument<'_>; 0]} as &[core::fmt::rt::Argument<'_>] (PointerCoercion(Unsize));
+        _20 = const {alloc9<imm>: &[core::fmt::rt::Argument<'_>; 0]} as &[core::fmt::rt::Argument<'_>] (PointerCoercion(Unsize));
         _18 = Arguments::<'_> { pieces: _19, fmt: const Option::<&[core::fmt::rt::Placeholder]>::None, args: move _20 };
         StorageDead(_20);
         StorageDead(_19);
         _17 = panic_fmt(move _18) -> unwind continue;
     }
 
-    bb3: {
+    bb4: {
         StorageDead(_16);
         StorageDead(_15);
         StorageDead(_13);
@@ -112,10 +116,10 @@ fn my_test_func(_1: &mut String, _2: i32) -> Result<(), core::fmt::Error> {
         StorageDead(_4);
         StorageLive(_21);
         _21 = _1 as &mut dyn core::fmt::Write (PointerCoercion(Unsize));
-        _0 = core::fmt::write(move _21, move _3) -> [return: bb4, unwind continue];
+        _0 = core::fmt::write(move _21, move _3) -> [return: bb5, unwind continue];
     }
 
-    bb4: {
+    bb5: {
         StorageDead(_21);
         StorageDead(_3);
         StorageDead(_7);
@@ -123,38 +127,38 @@ fn my_test_func(_1: &mut String, _2: i32) -> Result<(), core::fmt::Error> {
     }
 }
 
-alloc9 (size: 16, align: 8) {
+alloc11 (size: 16, align: 8) {
     00 00 00 00 00 00 00 00 __ __ __ __ __ __ __ __ │ ........░░░░░░░░
 }
 
-alloc8 (size: 16, align: 8) {
+alloc10 (size: 16, align: 8) {
     00 00 00 00 00 00 00 00 __ __ __ __ __ __ __ __ │ ........░░░░░░░░
 }
 
-alloc7 (size: 0, align: 8) {}
+alloc9 (size: 0, align: 8) {}
 
-alloc5 (size: 16, align: 8) {
-    ╾─────alloc6<imm>─────╼ 0c 00 00 00 00 00 00 00 │ ╾──────╼........
+alloc7 (size: 16, align: 8) {
+    ╾─────alloc8<imm>─────╼ 0c 00 00 00 00 00 00 00 │ ╾──────╼........
 }
 
-alloc6 (size: 12, align: 1) {
+alloc8 (size: 12, align: 1) {
     69 6e 76 61 6c 69 64 20 61 72 67 73             │ invalid args
 }
 
-alloc3 (size: 32, align: 8) {
-    0x00 │ ╾─────alloc2<imm>─────╼ 0a 00 00 00 00 00 00 00 │ ╾──────╼........
-    0x10 │ ╾─────alloc4<imm>─────╼ 0c 00 00 00 00 00 00 00 │ ╾──────╼........
+alloc5 (size: 32, align: 8) {
+    0x00 │ ╾─────alloc4<imm>─────╼ 0a 00 00 00 00 00 00 00 │ ╾──────╼........
+    0x10 │ ╾─────alloc6<imm>─────╼ 0c 00 00 00 00 00 00 00 │ ╾──────╼........
 }
 
-alloc2 (size: 10, align: 1) {
+alloc4 (size: 10, align: 1) {
     49 74 65 72 61 74 69 6f 6e 20                   │ Iteration 
 }
 
-alloc4 (size: 12, align: 1) {
+alloc6 (size: 12, align: 1) {
     20 77 61 73 20 77 72 69 74 74 65 6e             │  was written
 }
 
-promoted[0] in my_test_func: &[&str; 2] = {
+promoted[0] in my_test_func_with_param: &[&str; 2] = {
     let mut _0: &[&str; 2];
     let mut _1: [&str; 2];
 

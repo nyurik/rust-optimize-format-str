@@ -3,15 +3,7 @@ source_filename = "libtest.e5e93ba33aa89e1-cgu.0"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-i128:128-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
 
-%"alloc::vec::Vec<u8>" = type { %"alloc::raw_vec::RawVec<u8>", i64 }
-%"alloc::raw_vec::RawVec<u8>" = type { i64, ptr, %"alloc::alloc::Global" }
-%"alloc::alloc::Global" = type {}
 %"core::option::Option<(core::ptr::non_null::NonNull<u8>, core::alloc::layout::Layout)>" = type { [1 x i64], i64, [1 x i64] }
-%"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Err" = type { [1 x i64], %"alloc::collections::TryReserveError" }
-%"alloc::collections::TryReserveError" = type { %"alloc::collections::TryReserveErrorKind" }
-%"alloc::collections::TryReserveErrorKind" = type { i64, [1 x i64] }
-%"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Ok" = type { [1 x i64], %"core::ptr::non_null::NonNull<[u8]>" }
-%"core::ptr::non_null::NonNull<[u8]>" = type { { ptr, i64 } }
 %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>" = type { i64, [2 x i64] }
 %"core::fmt::Arguments<'_>" = type { { ptr, i64 }, { ptr, i64 }, %"core::option::Option<&[core::fmt::rt::Placeholder]>" }
 %"core::option::Option<&[core::fmt::rt::Placeholder]>" = type { ptr, [1 x i64] }
@@ -128,7 +120,7 @@ core::char::methods::encode_utf8_raw.exit.i: ; preds = %bb9.i.i, %bb8.i.i, %bb7.
   tail call void @llvm.experimental.noalias.scope.decl(metadata !10)
   tail call void @llvm.experimental.noalias.scope.decl(metadata !13)
   tail call void @llvm.experimental.noalias.scope.decl(metadata !16)
-  %18 = getelementptr inbounds %"alloc::vec::Vec<u8>", ptr %self, i64 0, i32 1
+  %18 = getelementptr inbounds i8, ptr %self, i64 16
   %len.i.i.i.i.i = load i64, ptr %18, align 8, !alias.scope !19, !noalias !20, !noundef !3
   %19 = load i64, ptr %self, align 8, !alias.scope !22, !noalias !20, !noundef !3
   %_7.i.i.i.i.i = sub i64 %19, %len.i.i.i.i.i
@@ -155,7 +147,7 @@ bb1.i.i.i.i.i:                                    ; preds = %core::char::methods
 bb4.i:                                            ; preds = %start
   %_4.i = trunc i32 %c to i8
   tail call void @llvm.experimental.noalias.scope.decl(metadata !25)
-  %22 = getelementptr inbounds %"alloc::vec::Vec<u8>", ptr %self, i64 0, i32 1
+  %22 = getelementptr inbounds i8, ptr %self, i64 16
   %_4.i.i = load i64, ptr %22, align 8, !alias.scope !28, !noundef !3
   %23 = load i64, ptr %self, align 8, !alias.scope !28, !noundef !3
   %_3.i.i = icmp eq i64 %_4.i.i, %23
@@ -188,7 +180,7 @@ start:
   tail call void @llvm.experimental.noalias.scope.decl(metadata !29)
   tail call void @llvm.experimental.noalias.scope.decl(metadata !32)
   tail call void @llvm.experimental.noalias.scope.decl(metadata !35)
-  %0 = getelementptr inbounds %"alloc::vec::Vec<u8>", ptr %self, i64 0, i32 1
+  %0 = getelementptr inbounds i8, ptr %self, i64 16
   %len.i.i.i.i = load i64, ptr %0, align 8, !alias.scope !38, !noalias !39, !noundef !3
   %1 = load i64, ptr %self, align 8, !alias.scope !41, !noalias !39, !noundef !3
   %_7.i.i.i.i = sub i64 %1, %len.i.i.i.i
@@ -220,19 +212,19 @@ start:
   br i1 %2, label %bb7, label %bb8
 
 bb8:                                              ; preds = %start
-  %3 = getelementptr inbounds %"core::option::Option<(core::ptr::non_null::NonNull<u8>, core::alloc::layout::Layout)>", ptr %current_memory, i64 0, i32 1
+  %3 = getelementptr inbounds i8, ptr %current_memory, i64 8
   %4 = load i64, ptr %3, align 8, !range !44, !noundef !3
   %.not = icmp eq i64 %4, 0
   br i1 %.not, label %bb1, label %bb2
 
 bb7:                                              ; preds = %start
-  %5 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Err", ptr %_0, i64 0, i32 1
+  %5 = getelementptr inbounds i8, ptr %_0, i64 8
   store i64 0, ptr %5, align 8
   br label %bb6
 
 bb2:                                              ; preds = %bb8
   %ptr = load ptr, ptr %current_memory, align 8, !nonnull !3, !noundef !3
-  %6 = getelementptr inbounds %"core::option::Option<(core::ptr::non_null::NonNull<u8>, core::alloc::layout::Layout)>", ptr %current_memory, i64 0, i32 2
+  %6 = getelementptr inbounds i8, ptr %current_memory, i64 16
   %7 = load i64, ptr %6, align 8, !noundef !3
   %cond = icmp eq i64 %4, %0
   tail call void @llvm.assume(i1 %cond)
@@ -280,20 +272,18 @@ bb4.i.i24:                                        ; preds = %bb1
 bb5:                                              ; preds = %bb4.i.i24, %bb2.i.i, %bb4.i.i, %bb4.i.i.i, %bb2.i.i.i
   %_0.sroa.0.2.i.i.pn = phi ptr [ %raw_ptr.i.i, %bb4.i.i ], [ %ptr6.i.i.i, %bb2.i.i.i ], [ %_0.i.i.i.i, %bb4.i.i.i ], [ %ptr6.i.i, %bb2.i.i ], [ %_0.i.i.i, %bb4.i.i24 ]
   %15 = icmp eq ptr %_0.sroa.0.2.i.i.pn, null
+  %16 = getelementptr inbounds i8, ptr %_0, i64 8
+  %17 = getelementptr inbounds i8, ptr %_0, i64 16
   br i1 %15, label %bb12, label %bb13
 
 bb13:                                             ; preds = %bb5
-  %16 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Ok", ptr %_0, i64 0, i32 1
   store ptr %_0.sroa.0.2.i.i.pn, ptr %16, align 8
-  %17 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Ok", ptr %_0, i64 0, i32 1, i32 0, i32 1
   store i64 %1, ptr %17, align 8
   br label %bb6
 
 bb12:                                             ; preds = %bb5
-  %18 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Err", ptr %_0, i64 0, i32 1
-  store i64 %0, ptr %18, align 8
-  %19 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Err", ptr %_0, i64 0, i32 1, i32 0, i32 1
-  store i64 %1, ptr %19, align 8
+  store i64 %0, ptr %16, align 8
+  store i64 %1, ptr %17, align 8
   br label %bb6
 
 bb6:                                              ; preds = %bb13, %bb12, %bb7
@@ -325,32 +315,28 @@ bb9.i:                                            ; preds = %start
   call void @llvm.lifetime.start.p0(i64 24, ptr nonnull %_17.i), !noalias !45
   %1 = getelementptr inbounds i8, ptr %self, i64 8
   %2 = icmp eq i64 %_12.i, 0
-  br i1 %2, label %bb2.i.i, label %bb3.i.i
+  br i1 %2, label %"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i", label %bb4.i.i
 
-bb2.i.i:                                          ; preds = %bb9.i
-  %3 = getelementptr inbounds %"core::option::Option<(core::ptr::non_null::NonNull<u8>, core::alloc::layout::Layout)>", ptr %_17.i, i64 0, i32 1
-  store i64 0, ptr %3, align 8, !alias.scope !48, !noalias !45
-  br label %"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i"
-
-bb3.i.i:                                          ; preds = %bb9.i
+bb4.i.i:                                          ; preds = %bb9.i
   %self.val16.i = load ptr, ptr %1, align 8, !alias.scope !45, !nonnull !3, !noundef !3
   store ptr %self.val16.i, ptr %_17.i, align 8, !alias.scope !48, !noalias !45
-  %_9.sroa.4.0._0.sroa_idx.i.i = getelementptr inbounds i8, ptr %_17.i, i64 8
-  store i64 1, ptr %_9.sroa.4.0._0.sroa_idx.i.i, align 8, !alias.scope !48, !noalias !45
   %_9.sroa.5.0._0.sroa_idx.i.i = getelementptr inbounds i8, ptr %_17.i, i64 16
   store i64 %_12.i, ptr %_9.sroa.5.0._0.sroa_idx.i.i, align 8, !alias.scope !48, !noalias !45
   br label %"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i"
 
-"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i": ; preds = %bb3.i.i, %bb2.i.i
+"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i": ; preds = %bb4.i.i, %bb9.i
+  %.sink.i.i = phi i64 [ 1, %bb4.i.i ], [ 0, %bb9.i ]
+  %3 = getelementptr inbounds i8, ptr %_17.i, i64 8
+  store i64 %.sink.i.i, ptr %3, align 8, !alias.scope !48, !noalias !45
 ; call alloc::raw_vec::finish_grow
   call fastcc void @alloc::raw_vec::finish_grow(ptr noalias nocapture noundef nonnull align 8 dereferenceable(24) %self3.i, i64 noundef %_0.sroa.0.0.i.i, i64 %_0.0.sroa.speculated.i17.i, ptr noalias nocapture noundef nonnull readonly align 8 dereferenceable(24) %_17.i), !noalias !45
   call void @llvm.lifetime.end.p0(i64 24, ptr nonnull %_17.i), !noalias !45
-  %_41.i = load i64, ptr %self3.i, align 8, !range !51, !noalias !45, !noundef !3
-  %trunc.not.i = icmp eq i64 %_41.i, 0
+  %_39.i = load i64, ptr %self3.i, align 8, !range !51, !noalias !45, !noundef !3
+  %trunc.not.i = icmp eq i64 %_39.i, 0
+  %4 = getelementptr inbounds i8, ptr %self3.i, i64 8
   br i1 %trunc.not.i, label %"alloc::raw_vec::RawVec<T,A>::grow_amortized.exit.thread", label %"alloc::raw_vec::RawVec<T,A>::grow_amortized.exit"
 
 "alloc::raw_vec::RawVec<T,A>::grow_amortized.exit.thread": ; preds = %"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i"
-  %4 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Ok", ptr %self3.i, i64 0, i32 1
   %v.0.i = load ptr, ptr %4, align 8, !noalias !45, !nonnull !3, !noundef !3
   call void @llvm.lifetime.end.p0(i64 24, ptr nonnull %self3.i), !noalias !45
   store ptr %v.0.i, ptr %1, align 8, !alias.scope !45
@@ -358,10 +344,9 @@ bb3.i.i:                                          ; preds = %bb9.i
   ret void
 
 "alloc::raw_vec::RawVec<T,A>::grow_amortized.exit": ; preds = %"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i"
-  %5 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Err", ptr %self3.i, i64 0, i32 1
-  %e.0.i = load i64, ptr %5, align 8, !range !44, !noalias !45, !noundef !3
-  %6 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Err", ptr %self3.i, i64 0, i32 1, i32 0, i32 1
-  %e.1.i = load i64, ptr %6, align 8, !noalias !45
+  %e.0.i = load i64, ptr %4, align 8, !range !44, !noalias !45, !noundef !3
+  %5 = getelementptr inbounds i8, ptr %self3.i, i64 16
+  %e.1.i = load i64, ptr %5, align 8, !noalias !45
   call void @llvm.lifetime.end.p0(i64 24, ptr nonnull %self3.i), !noalias !45
   %cond = icmp eq i64 %e.0.i, 0
   br i1 %cond, label %bb5.i, label %bb7.i
@@ -400,32 +385,28 @@ bb9.i:                                            ; preds = %start
   call void @llvm.lifetime.start.p0(i64 24, ptr nonnull %_17.i), !noalias !52
   %1 = getelementptr inbounds i8, ptr %slf, i64 8
   %2 = icmp eq i64 %_12.i, 0
-  br i1 %2, label %bb2.i.i, label %bb3.i.i
+  br i1 %2, label %"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i", label %bb4.i.i
 
-bb2.i.i:                                          ; preds = %bb9.i
-  %3 = getelementptr inbounds %"core::option::Option<(core::ptr::non_null::NonNull<u8>, core::alloc::layout::Layout)>", ptr %_17.i, i64 0, i32 1
-  store i64 0, ptr %3, align 8, !alias.scope !55, !noalias !52
-  br label %"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i"
-
-bb3.i.i:                                          ; preds = %bb9.i
+bb4.i.i:                                          ; preds = %bb9.i
   %self.val16.i = load ptr, ptr %1, align 8, !alias.scope !52, !nonnull !3, !noundef !3
   store ptr %self.val16.i, ptr %_17.i, align 8, !alias.scope !55, !noalias !52
-  %_9.sroa.4.0._0.sroa_idx.i.i = getelementptr inbounds i8, ptr %_17.i, i64 8
-  store i64 1, ptr %_9.sroa.4.0._0.sroa_idx.i.i, align 8, !alias.scope !55, !noalias !52
   %_9.sroa.5.0._0.sroa_idx.i.i = getelementptr inbounds i8, ptr %_17.i, i64 16
   store i64 %_12.i, ptr %_9.sroa.5.0._0.sroa_idx.i.i, align 8, !alias.scope !55, !noalias !52
   br label %"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i"
 
-"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i": ; preds = %bb3.i.i, %bb2.i.i
+"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i": ; preds = %bb4.i.i, %bb9.i
+  %.sink.i.i = phi i64 [ 1, %bb4.i.i ], [ 0, %bb9.i ]
+  %3 = getelementptr inbounds i8, ptr %_17.i, i64 8
+  store i64 %.sink.i.i, ptr %3, align 8, !alias.scope !55, !noalias !52
 ; call alloc::raw_vec::finish_grow
   call fastcc void @alloc::raw_vec::finish_grow(ptr noalias nocapture noundef nonnull align 8 dereferenceable(24) %self3.i, i64 noundef %_0.sroa.0.0.i.i, i64 %_0.0.sroa.speculated.i17.i, ptr noalias nocapture noundef nonnull readonly align 8 dereferenceable(24) %_17.i), !noalias !52
   call void @llvm.lifetime.end.p0(i64 24, ptr nonnull %_17.i), !noalias !52
-  %_41.i = load i64, ptr %self3.i, align 8, !range !51, !noalias !52, !noundef !3
-  %trunc.not.i = icmp eq i64 %_41.i, 0
+  %_39.i = load i64, ptr %self3.i, align 8, !range !51, !noalias !52, !noundef !3
+  %trunc.not.i = icmp eq i64 %_39.i, 0
+  %4 = getelementptr inbounds i8, ptr %self3.i, i64 8
   br i1 %trunc.not.i, label %"alloc::raw_vec::RawVec<T,A>::grow_amortized.exit.thread", label %"alloc::raw_vec::RawVec<T,A>::grow_amortized.exit"
 
 "alloc::raw_vec::RawVec<T,A>::grow_amortized.exit.thread": ; preds = %"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i"
-  %4 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Ok", ptr %self3.i, i64 0, i32 1
   %v.0.i = load ptr, ptr %4, align 8, !noalias !52, !nonnull !3, !noundef !3
   call void @llvm.lifetime.end.p0(i64 24, ptr nonnull %self3.i), !noalias !52
   store ptr %v.0.i, ptr %1, align 8, !alias.scope !52
@@ -433,10 +414,9 @@ bb3.i.i:                                          ; preds = %bb9.i
   ret void
 
 "alloc::raw_vec::RawVec<T,A>::grow_amortized.exit": ; preds = %"alloc::raw_vec::RawVec<T,A>::current_memory.exit.i"
-  %5 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Err", ptr %self3.i, i64 0, i32 1
-  %e.0.i = load i64, ptr %5, align 8, !range !44, !noalias !52, !noundef !3
-  %6 = getelementptr inbounds %"core::result::Result<core::ptr::non_null::NonNull<[u8]>, alloc::collections::TryReserveError>::Err", ptr %self3.i, i64 0, i32 1, i32 0, i32 1
-  %e.1.i = load i64, ptr %6, align 8, !noalias !52
+  %e.0.i = load i64, ptr %4, align 8, !range !44, !noalias !52, !noundef !3
+  %5 = getelementptr inbounds i8, ptr %self3.i, i64 16
+  %e.1.i = load i64, ptr %5, align 8, !noalias !52
   call void @llvm.lifetime.end.p0(i64 24, ptr nonnull %self3.i), !noalias !52
   %cond = icmp eq i64 %e.0.i, 0
   br i1 %cond, label %bb5.i, label %bb7.i
@@ -452,20 +432,20 @@ bb7.i:                                            ; preds = %"alloc::raw_vec::Ra
   unreachable
 }
 
-; libtest::my_test_func
+; libtest::my_test_func_with_simple_str
 ; Function Attrs: nonlazybind uwtable
-define noundef zeroext i1 @libtest::my_test_func(ptr noalias noundef align 8 dereferenceable(24) %buffer) unnamed_addr #0 {
+define noundef zeroext i1 @libtest::my_test_func_with_simple_str(ptr noalias noundef align 8 dereferenceable(24) %buffer) unnamed_addr #0 {
 start:
   %args = alloca %"core::fmt::Arguments<'_>", align 8
   call void @llvm.lifetime.start.p0(i64 48, ptr nonnull %args)
   store ptr @alloc_1b473d57eeec7ed15d9a71960c19f808, ptr %args, align 8
   %0 = getelementptr inbounds i8, ptr %args, i64 8
   store i64 1, ptr %0, align 8
-  %1 = getelementptr inbounds %"core::fmt::Arguments<'_>", ptr %args, i64 0, i32 2
+  %1 = getelementptr inbounds i8, ptr %args, i64 32
   store ptr null, ptr %1, align 8
-  %2 = getelementptr inbounds %"core::fmt::Arguments<'_>", ptr %args, i64 0, i32 1
+  %2 = getelementptr inbounds i8, ptr %args, i64 16
   store ptr @alloc_513570631223a12912d85da2bec3b15a, ptr %2, align 8
-  %3 = getelementptr inbounds %"core::fmt::Arguments<'_>", ptr %args, i64 0, i32 1, i32 1
+  %3 = getelementptr inbounds i8, ptr %args, i64 24
   store i64 0, ptr %3, align 8
 ; call core::fmt::write
   %_0 = call noundef zeroext i1 @core::fmt::write(ptr noundef nonnull align 1 %buffer, ptr noalias noundef nonnull readonly align 8 dereferenceable(24) @vtable.1, ptr noalias nocapture noundef nonnull readonly align 8 dereferenceable(48) %args)

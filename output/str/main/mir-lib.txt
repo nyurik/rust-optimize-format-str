@@ -1,6 +1,6 @@
 // WARNING: This output format is intended for human consumers only
 // and is subject to change without notice. Knock yourself out.
-fn my_test_func(_1: &mut String) -> Result<(), core::fmt::Error> {
+fn my_test_func_with_simple_str(_1: &mut String) -> Result<(), core::fmt::Error> {
     debug buffer => _1;
     let mut _0: core::result::Result<(), core::fmt::Error>;
     let mut _2: core::fmt::Arguments<'_>;
@@ -22,9 +22,9 @@ fn my_test_func(_1: &mut String) -> Result<(), core::fmt::Error> {
     bb0: {
         StorageLive(_2);
         StorageLive(_3);
-        _3 = const {alloc3<imm>: &[&str; 1]} as &[&str] (PointerCoercion(Unsize));
+        _3 = const {alloc4<imm>: &[&str; 1]} as &[&str] (PointerCoercion(Unsize));
         StorageLive(_4);
-        _4 = const {alloc6<imm>: &[core::fmt::rt::Argument<'_>; 0]} as &[core::fmt::rt::Argument<'_>] (PointerCoercion(Unsize));
+        _4 = const {alloc7<imm>: &[core::fmt::rt::Argument<'_>; 0]} as &[core::fmt::rt::Argument<'_>] (PointerCoercion(Unsize));
         _2 = Arguments::<'_> { pieces: _3, fmt: const Option::<&[core::fmt::rt::Placeholder]>::None, args: move _4 };
         StorageDead(_4);
         StorageDead(_3);
@@ -40,22 +40,22 @@ fn my_test_func(_1: &mut String) -> Result<(), core::fmt::Error> {
     }
 }
 
-alloc7 (size: 16, align: 8) {
+alloc8 (size: 16, align: 8) {
     00 00 00 00 00 00 00 00 __ __ __ __ __ __ __ __ │ ........░░░░░░░░
 }
 
-alloc6 (size: 0, align: 8) {}
+alloc7 (size: 0, align: 8) {}
 
-alloc3 (size: 16, align: 8) {
-    ╾─────alloc2<imm>─────╼ 14 00 00 00 00 00 00 00 │ ╾──────╼........
+alloc4 (size: 16, align: 8) {
+    ╾─────alloc3<imm>─────╼ 14 00 00 00 00 00 00 00 │ ╾──────╼........
 }
 
-alloc2 (size: 20, align: 1) {
+alloc3 (size: 20, align: 1) {
     0x00 │ 53 69 6d 70 6c 65 20 69 6e 6c 69 6e 65 20 73 74 │ Simple inline st
     0x10 │ 72 69 6e 67                                     │ ring
 }
 
-promoted[0] in my_test_func: &[&str; 1] = {
+promoted[0] in my_test_func_with_simple_str: &[&str; 1] = {
     let mut _0: &[&str; 1];
     let mut _1: [&str; 1];
 

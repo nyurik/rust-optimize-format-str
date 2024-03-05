@@ -1,6 +1,6 @@
-; libtest::my_test_func
+; libtest::my_test_func_with_param
 ; Function Attrs: nonlazybind uwtable
-define noundef zeroext i1 @libtest::my_test_func(ptr noalias noundef align 8 dereferenceable(24) %buffer, i32 noundef %0) unnamed_addr #1 {
+define noundef zeroext i1 @libtest::my_test_func_with_param(ptr noalias noundef align 8 dereferenceable(24) %buffer, i32 noundef %0) unnamed_addr #1 {
 start:
   %_18 = alloca %"core::fmt::Arguments<'_>", align 8
   %_8 = alloca %"core::fmt::rt::Argument<'_>", align 8
@@ -22,47 +22,50 @@ start:
   %6 = getelementptr inbounds i8, ptr %5, i64 8
   store ptr %4, ptr %6, align 8
   call void @llvm.lifetime.end.p0(i64 16, ptr %_8)
-  br i1 false, label %bb2, label %bb1
+  br label %bb1
 
 bb1:                                              ; preds = %start
-  br i1 false, label %bb2, label %bb3
+  br label %bb4
 
-bb2:                                              ; preds = %bb1, %start
-  call void @llvm.lifetime.start.p0(i64 48, ptr %_18)
-  store ptr @alloc_af99043bc04c419363a7f04d23183506, ptr %_18, align 8
-  %7 = getelementptr inbounds i8, ptr %_18, i64 8
-  store i64 1, ptr %7, align 8
+bb4:                                              ; preds = %bb1
+  store ptr @alloc_d6cc9c75158bbcf20176688a556567dd, ptr %args, align 8
+  %7 = getelementptr inbounds i8, ptr %args, i64 8
+  store i64 2, ptr %7, align 8
   %8 = load ptr, ptr @0, align 8, !align !5, !noundef !3
   %9 = load i64, ptr getelementptr inbounds (i8, ptr @0, i64 8), align 8
-  %10 = getelementptr inbounds %"core::fmt::Arguments<'_>", ptr %_18, i32 0, i32 2
+  %10 = getelementptr inbounds i8, ptr %args, i64 32
   store ptr %8, ptr %10, align 8
   %11 = getelementptr inbounds i8, ptr %10, i64 8
   store i64 %9, ptr %11, align 8
-  %12 = getelementptr inbounds %"core::fmt::Arguments<'_>", ptr %_18, i32 0, i32 1
-  store ptr @alloc_513570631223a12912d85da2bec3b15a, ptr %12, align 8
+  %12 = getelementptr inbounds i8, ptr %args, i64 16
+  store ptr %_7, ptr %12, align 8
   %13 = getelementptr inbounds i8, ptr %12, i64 8
-  store i64 0, ptr %13, align 8
-; call core::panicking::panic_fmt
-  call void @core::panicking::panic_fmt(ptr noalias nocapture noundef readonly align 8 dereferenceable(48) %_18, ptr noalias noundef readonly align 8 dereferenceable(24) @alloc_0b717e0761c7f851ee5ee5b89efec0ef) #21
-  unreachable
-
-bb3:                                              ; preds = %bb1
-  store ptr @alloc_d6cc9c75158bbcf20176688a556567dd, ptr %args, align 8
-  %14 = getelementptr inbounds i8, ptr %args, i64 8
-  store i64 2, ptr %14, align 8
-  %15 = load ptr, ptr @0, align 8, !align !5, !noundef !3
-  %16 = load i64, ptr getelementptr inbounds (i8, ptr @0, i64 8), align 8
-  %17 = getelementptr inbounds %"core::fmt::Arguments<'_>", ptr %args, i32 0, i32 2
-  store ptr %15, ptr %17, align 8
-  %18 = getelementptr inbounds i8, ptr %17, i64 8
-  store i64 %16, ptr %18, align 8
-  %19 = getelementptr inbounds %"core::fmt::Arguments<'_>", ptr %args, i32 0, i32 1
-  store ptr %_7, ptr %19, align 8
-  %20 = getelementptr inbounds i8, ptr %19, i64 8
-  store i64 1, ptr %20, align 8
+  store i64 1, ptr %13, align 8
 ; call core::fmt::write
   %_0 = call noundef zeroext i1 @core::fmt::write(ptr noundef nonnull align 1 %buffer, ptr noalias noundef readonly align 8 dereferenceable(24) @vtable.1, ptr noalias nocapture noundef readonly align 8 dereferenceable(48) %args)
   call void @llvm.lifetime.end.p0(i64 48, ptr %args)
   call void @llvm.lifetime.end.p0(i64 16, ptr %_7)
   ret i1 %_0
+
+bb2:                                              ; No predecessors!
+  br label %bb3
+
+bb3:                                              ; preds = %bb2
+  call void @llvm.lifetime.start.p0(i64 48, ptr %_18)
+  store ptr @alloc_af99043bc04c419363a7f04d23183506, ptr %_18, align 8
+  %14 = getelementptr inbounds i8, ptr %_18, i64 8
+  store i64 1, ptr %14, align 8
+  %15 = load ptr, ptr @0, align 8, !align !5, !noundef !3
+  %16 = load i64, ptr getelementptr inbounds (i8, ptr @0, i64 8), align 8
+  %17 = getelementptr inbounds i8, ptr %_18, i64 32
+  store ptr %15, ptr %17, align 8
+  %18 = getelementptr inbounds i8, ptr %17, i64 8
+  store i64 %16, ptr %18, align 8
+  %19 = getelementptr inbounds i8, ptr %_18, i64 16
+  store ptr @alloc_513570631223a12912d85da2bec3b15a, ptr %19, align 8
+  %20 = getelementptr inbounds i8, ptr %19, i64 8
+  store i64 0, ptr %20, align 8
+; call core::panicking::panic_fmt
+  call void @core::panicking::panic_fmt(ptr noalias nocapture noundef readonly align 8 dereferenceable(48) %_18, ptr noalias noundef readonly align 8 dereferenceable(24) @alloc_0b717e0761c7f851ee5ee5b89efec0ef) #23
+  unreachable
 }

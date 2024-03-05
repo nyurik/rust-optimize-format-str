@@ -1,6 +1,6 @@
-; libtest::my_test_func
+; libtest::my_test_func_with_simple_str
 ; Function Attrs: nonlazybind uwtable
-define noundef zeroext i1 @libtest::my_test_func(ptr noalias noundef align 8 dereferenceable(24) %buffer) unnamed_addr #1 {
+define noundef zeroext i1 @libtest::my_test_func_with_simple_str(ptr noalias noundef align 8 dereferenceable(24) %buffer) unnamed_addr #1 {
 start:
   %args = alloca %"core::fmt::Arguments<'_>", align 8
   call void @llvm.lifetime.start.p0(i64 48, ptr %args)
@@ -9,11 +9,11 @@ start:
   store i64 1, ptr %0, align 8
   %1 = load ptr, ptr @0, align 8, !align !5, !noundef !3
   %2 = load i64, ptr getelementptr inbounds (i8, ptr @0, i64 8), align 8
-  %3 = getelementptr inbounds %"core::fmt::Arguments<'_>", ptr %args, i32 0, i32 2
+  %3 = getelementptr inbounds i8, ptr %args, i64 32
   store ptr %1, ptr %3, align 8
   %4 = getelementptr inbounds i8, ptr %3, i64 8
   store i64 %2, ptr %4, align 8
-  %5 = getelementptr inbounds %"core::fmt::Arguments<'_>", ptr %args, i32 0, i32 1
+  %5 = getelementptr inbounds i8, ptr %args, i64 16
   store ptr @alloc_513570631223a12912d85da2bec3b15a, ptr %5, align 8
   %6 = getelementptr inbounds i8, ptr %5, i64 8
   store i64 0, ptr %6, align 8
