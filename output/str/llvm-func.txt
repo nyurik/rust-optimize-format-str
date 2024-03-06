@@ -1,0 +1,20 @@
+; libtest::my_test_func_with_simple_str
+; Function Attrs: nonlazybind uwtable
+define noundef zeroext i1 @libtest::my_test_func_with_simple_str(ptr noalias noundef align 8 dereferenceable(24) %buffer) unnamed_addr #0 {
+start:
+  %args = alloca %"core::fmt::Arguments<'_>", align 8
+  call void @llvm.lifetime.start.p0(i64 48, ptr nonnull %args)
+  store ptr @alloc_1b473d57eeec7ed15d9a71960c19f808, ptr %args, align 8
+  %0 = getelementptr inbounds i8, ptr %args, i64 8
+  store i64 1, ptr %0, align 8
+  %1 = getelementptr inbounds i8, ptr %args, i64 32
+  store ptr null, ptr %1, align 8
+  %2 = getelementptr inbounds i8, ptr %args, i64 16
+  store ptr @alloc_513570631223a12912d85da2bec3b15a, ptr %2, align 8
+  %3 = getelementptr inbounds i8, ptr %args, i64 24
+  store i64 0, ptr %3, align 8
+; call core::fmt::write
+  %_0 = call noundef zeroext i1 @core::fmt::write(ptr noundef nonnull align 1 %buffer, ptr noalias noundef nonnull readonly align 8 dereferenceable(24) @vtable.1, ptr noalias nocapture noundef nonnull readonly align 8 dereferenceable(48) %args)
+  call void @llvm.lifetime.end.p0(i64 48, ptr nonnull %args)
+  ret i1 %_0
+}
