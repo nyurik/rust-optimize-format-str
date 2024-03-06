@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 set -xu
 
-# Usage: ./run.sh <name>
-NAME=$1
+rm -rf output
 
 pushd fmt
 
-LIB=../output/fmt/$NAME
+LIB=../output/fmt
 rm -rf ${LIB}
 mkdir -p ${LIB}
 
@@ -32,7 +31,7 @@ popd
 
 pushd str
 
-LIB=../output/str/$NAME
+LIB=../output/str
 rm -rf ${LIB}
 mkdir -p ${LIB}
 
