@@ -1,0 +1,249 @@
+alloc::raw_vec::finish_grow:
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 501
+		fn finish_grow<A>(
+	push r15
+	push r14
+	push rbx
+	mov rbx, rdi
+		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 827
+		match self {
+	test rsi, rsi
+	je .LBB0_6
+	mov r14, rdx
+	mov r15, rsi
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 514
+		let memory = if let Some((ptr, old_layout)) = current_memory {
+	cmp qword ptr [rcx + 8], 0
+	je .LBB0_7
+	mov rsi, qword ptr [rcx + 16]
+		// /home/nyurik/dev/rust/rust/library/alloc/src/alloc.rs : 202
+		match old_layout.size() {
+	test rsi, rsi
+	je .LBB0_7
+	mov rdi, qword ptr [rcx]
+		// /home/nyurik/dev/rust/rust/library/alloc/src/alloc.rs : 136
+		unsafe { __rust_realloc(ptr, layout.size(), layout.align(), new_size) }
+	mov rdx, r15
+	mov rcx, r14
+	call qword ptr [rip + __rust_realloc@GOTPCREL]
+		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 827
+		match self {
+	test rax, rax
+	je .LBB0_4
+.LBB0_11:
+		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 828
+		Ok(t) => Ok(t),
+	mov qword ptr [rbx + 8], rax
+	mov qword ptr [rbx + 16], r14
+	xor eax, eax
+	jmp .LBB0_12
+.LBB0_7:
+	test r14, r14
+	je .LBB0_8
+	mov rax, qword ptr [rip + __rust_no_alloc_shim_is_unstable@GOTPCREL]
+	movzx eax, byte ptr [rax]
+	mov rdi, r14
+	mov rsi, r15
+	call qword ptr [rip + __rust_alloc@GOTPCREL]
+		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 827
+		match self {
+	test rax, rax
+	jne .LBB0_11
+.LBB0_4:
+		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 829
+		Err(e) => Err(op(e)),
+	mov qword ptr [rbx + 8], r15
+	mov qword ptr [rbx + 16], r14
+	jmp .LBB0_5
+.LBB0_6:
+		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 1964
+		Err(e) => Err(From::from(e)),
+	mov qword ptr [rbx + 8], 0
+.LBB0_5:
+	mov eax, 1
+.LBB0_12:
+	mov qword ptr [rbx], rax
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 526
+		}
+	pop rbx
+	pop r14
+	pop r15
+	ret
+.LBB0_8:
+	mov rax, r15
+		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 827
+		match self {
+	test rax, rax
+	jne .LBB0_11
+	jmp .LBB0_4
+
+alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle:
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 301
+		fn do_reserve_and_handle<T, A: Allocator>(
+	push r14
+	push rbx
+	sub rsp, 56
+		// /home/nyurik/dev/rust/rust/library/core/src/num/mod.rs : 1281
+		uint_impl! {
+	add rsi, rdx
+	jb .LBB1_8
+	mov rbx, rdi
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 428
+		let cap = cmp::max(self.cap.0 * 2, required_cap);
+	mov rax, qword ptr [rdi]
+	lea rcx, [rax + rax]
+	cmp rcx, rsi
+	cmova rsi, rcx
+	cmp rsi, 9
+	mov r14d, 8
+	cmovae r14, rsi
+		// /home/nyurik/dev/rust/rust/library/core/src/alloc/layout.rs : 449
+		if element_size != 0 && n > Layout::max_size_for_align(align) / element_size {
+	mov rsi, r14
+	not rsi
+	shr rsi, 63
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 257
+		if T::IS_ZST || self.cap.0 == 0 {
+	test rax, rax
+	je .LBB1_2
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 434
+		let ptr = finish_grow(new_layout, self.current_memory(), &mut self.alloc)?;
+	mov rcx, qword ptr [rbx + 8]
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 269
+		Some((self.ptr.cast().into(), layout))
+	mov qword ptr [rsp + 32], rcx
+	mov qword ptr [rsp + 48], rax
+	mov eax, 1
+	jmp .LBB1_4
+.LBB1_2:
+	xor eax, eax
+.LBB1_4:
+	mov qword ptr [rsp + 40], rax
+	lea rdi, [rsp + 8]
+	lea rcx, [rsp + 32]
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 434
+		let ptr = finish_grow(new_layout, self.current_memory(), &mut self.alloc)?;
+	mov rdx, r14
+	call alloc::raw_vec::finish_grow
+		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 1951
+		match self {
+	cmp qword ptr [rsp + 8], 0
+	jne .LBB1_5
+		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 1952
+		Ok(v) => ControlFlow::Continue(v),
+	mov rax, qword ptr [rsp + 16]
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 402
+		self.ptr = Unique::from(ptr.cast());
+	mov qword ptr [rbx + 8], rax
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 403
+		self.cap = unsafe { Cap(cap) };
+	mov qword ptr [rbx], r14
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 307
+		}
+	add rsp, 56
+	pop rbx
+	pop r14
+	ret
+.LBB1_5:
+		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 1953
+		Err(e) => ControlFlow::Break(Err(e)),
+	mov rdi, qword ptr [rsp + 16]
+		// /home/nyurik/dev/rust/rust/library/core/src/result.rs : 827
+		match self {
+	test rdi, rdi
+	jne .LBB1_6
+.LBB1_8:
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 542
+		Err(CapacityOverflow) => capacity_overflow(),
+	call qword ptr [rip + alloc::raw_vec::capacity_overflow@GOTPCREL]
+.LBB1_6:
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 306
+		handle_reserve(slf.grow_amortized(len, additional));
+	mov rsi, qword ptr [rsp + 24]
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 543
+		Err(AllocError { layout, .. }) => handle_alloc_error(layout),
+	call qword ptr [rip + alloc::alloc::handle_alloc_error@GOTPCREL]
+
+libtest::my_test_func_with_simple_str:
+		// /home/nyurik/dev/rust/temp/rust-optimize-format-str/str/src/lib.rs : 7
+		pub fn my_test_func_with_simple_str(buffer: &mut String) -> core::fmt::Result {
+	push rbx
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 248
+		if T::IS_ZST { usize::MAX } else { self.cap.0 }
+	mov rax, qword ptr [rdi]
+		// /home/nyurik/dev/rust/rust/library/alloc/src/vec/mod.rs : 911
+		self.buf.reserve(self.len, additional);
+	mov rsi, qword ptr [rdi + 16]
+		// /home/nyurik/dev/rust/rust/library/core/src/num/mod.rs : 1281
+		uint_impl! {
+	sub rax, rsi
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 392
+		additional > self.capacity().wrapping_sub(len)
+	cmp rax, 19
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 309
+		if self.needs_to_grow(len, additional) {
+	jbe .LBB2_1
+.LBB2_2:
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 235
+		self.ptr.as_ptr()
+	mov rax, qword ptr [rdi + 8]
+		// /home/nyurik/dev/rust/rust/library/core/src/intrinsics.rs : 2922
+		copy_nonoverlapping(src, dst, count)
+	movups xmm0, xmmword ptr [rip + .L__unnamed_1]
+	movups xmmword ptr [rax + rsi], xmm0
+	mov dword ptr [rax + rsi + 16], 1735289202
+		// /home/nyurik/dev/rust/rust/library/alloc/src/vec/mod.rs : 2040
+		self.len += count;
+	add rsi, 20
+	mov qword ptr [rdi + 16], rsi
+		// /home/nyurik/dev/rust/temp/rust-optimize-format-str/str/src/lib.rs : 9
+		}
+	xor eax, eax
+	pop rbx
+	ret
+.LBB2_1:
+		// /home/nyurik/dev/rust/rust/library/alloc/src/raw_vec.rs : 310
+		do_reserve_and_handle(self, len, additional);
+	mov edx, 20
+	mov rbx, rdi
+	call alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle
+	mov rdi, rbx
+	mov rsi, qword ptr [rbx + 16]
+	jmp .LBB2_2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

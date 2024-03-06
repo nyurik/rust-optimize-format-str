@@ -1,0 +1,29 @@
+libtest::my_test_func_with_param:
+		// /home/nyurik/dev/rust/temp/rust-optimize-format-str/fmt/src/lib.rs : 7
+		pub fn my_test_func_with_param(buffer: &mut String, value: i32) -> core::fmt::Result {
+	sub rsp, 72
+	mov dword ptr [rsp + 4], esi
+	lea rax, [rsp + 4]
+		// /home/nyurik/dev/rust/temp/rust-optimize-format-str/fmt/src/lib.rs : 8
+		write!(buffer, "Iteration {value} was written")
+	mov qword ptr [rsp + 8], rax
+	mov rax, qword ptr [rip + core::fmt::num::imp::<impl core::fmt::Display for i32>::fmt@GOTPCREL]
+	mov qword ptr [rsp + 16], rax
+		// /home/nyurik/dev/rust/rust/library/core/src/fmt/mod.rs : 335
+		Arguments { pieces, fmt: None, args }
+	lea rax, [rip + .L__unnamed_3]
+	mov qword ptr [rsp + 24], rax
+	mov qword ptr [rsp + 32], 2
+	mov qword ptr [rsp + 56], 0
+	lea rax, [rsp + 8]
+	mov qword ptr [rsp + 40], rax
+	mov qword ptr [rsp + 48], 1
+		// /home/nyurik/dev/rust/rust/library/core/src/fmt/mod.rs : 1108
+		if let Some(s) = args.as_str() { output.write_str(s) } else { write_internal(output, args) }
+	lea rsi, [rip + .L__unnamed_1]
+	lea rdx, [rsp + 24]
+	call qword ptr [rip + core::fmt::write_internal@GOTPCREL]
+		// /home/nyurik/dev/rust/temp/rust-optimize-format-str/fmt/src/lib.rs : 9
+		}
+	add rsp, 72
+	ret

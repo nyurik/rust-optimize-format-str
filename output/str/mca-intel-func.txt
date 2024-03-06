@@ -1,0 +1,83 @@
+Iterations:        100
+Instructions:      2100
+Total Cycles:      1475
+Total uOps:        3000
+
+Dispatch Width:    6
+uOps Per Cycle:    2.03
+IPC:               1.42
+Block RThroughput: 5.0
+
+
+Instruction Info:
+[1]: #uOps
+[2]: Latency
+[3]: RThroughput
+[4]: MayLoad
+[5]: MayStore
+[6]: HasSideEffects (U)
+
+[1]    [2]    [3]    [4]    [5]    [6]    Instructions:
+ 3      2     1.00           *            push	rbx
+ 1      5     0.50    *                   mov	rax, qword ptr [rdi]
+ 1      5     0.50    *                   mov	rsi, qword ptr [rdi + 16]
+ 1      1     0.25                        sub	rax, rsi
+ 1      1     0.25                        cmp	rax, 19
+ 1      1     0.50                        jbe	.LBB2_1
+ 1      5     0.50    *                   mov	rax, qword ptr [rdi + 8]
+ 1      6     0.50    *                   movups	xmm0, xmmword ptr [rip + .L__unnamed_1]
+ 2      1     1.00           *            movups	xmmword ptr [rax + rsi], xmm0
+ 1      1     1.00           *            mov	dword ptr [rax + rsi + 16], 1735289202
+ 1      1     0.25                        add	rsi, 20
+ 1      1     1.00           *            mov	qword ptr [rdi + 16], rsi
+ 1      0     0.17                        xor	eax, eax
+ 2      6     0.50    *                   pop	rbx
+ 3      7     1.00                  U     ret
+ 1      1     0.25                        mov	edx, 20
+ 1      1     0.25                        mov	rbx, rdi
+ 4      3     1.00                        call	alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle
+ 1      1     0.25                        mov	rdi, rbx
+ 1      5     0.50    *                   mov	rsi, qword ptr [rbx + 16]
+ 1      1     0.50                        jmp	.LBB2_2
+
+
+Resources:
+[0]   - SKLDivider
+[1]   - SKLFPDivider
+[2]   - SKLPort0
+[3]   - SKLPort1
+[4]   - SKLPort2
+[5]   - SKLPort3
+[6]   - SKLPort4
+[7]   - SKLPort5
+[8]   - SKLPort6
+[9]   - SKLPort7
+
+
+Resource pressure per iteration:
+[0]    [1]    [2]    [3]    [4]    [5]    [6]    [7]    [8]    [9]    
+ -      -     3.59   3.35   4.45   4.53   5.00   3.45   3.61   3.02   
+
+Resource pressure by instruction:
+[0]    [1]    [2]    [3]    [4]    [5]    [6]    [7]    [8]    [9]    Instructions:
+ -      -     0.07   0.52   0.09   0.13   1.00   0.15   0.26   0.78   push	rbx
+ -      -      -      -     0.53   0.47    -      -      -      -     mov	rax, qword ptr [rdi]
+ -      -      -      -     0.48   0.52    -      -      -      -     mov	rsi, qword ptr [rdi + 16]
+ -      -     0.01   0.42    -      -      -     0.33   0.24    -     sub	rax, rsi
+ -      -     0.31   0.13    -      -      -     0.46   0.10    -     cmp	rax, 19
+ -      -     0.55    -      -      -      -      -     0.45    -     jbe	.LBB2_1
+ -      -      -      -     0.53   0.47    -      -      -      -     mov	rax, qword ptr [rdi + 8]
+ -      -      -      -     0.60   0.40    -      -      -      -     movups	xmm0, xmmword ptr [rip + .L__unnamed_1]
+ -      -      -      -     0.01   0.04   1.00    -      -     0.95   movups	xmmword ptr [rax + rsi], xmm0
+ -      -      -      -     0.04    -     1.00    -      -     0.96   mov	dword ptr [rax + rsi + 16], 1735289202
+ -      -     0.20   0.27    -      -      -     0.35   0.18    -     add	rsi, 20
+ -      -      -      -      -     0.93   1.00    -      -     0.07   mov	qword ptr [rdi + 16], rsi
+ -      -      -      -      -      -      -      -      -      -     xor	eax, eax
+ -      -     0.04   0.54   0.45   0.55    -     0.13   0.29    -     pop	rbx
+ -      -     0.73   0.19   0.48   0.52    -     0.08   1.00    -     ret
+ -      -     0.13   0.28    -      -      -     0.58   0.01    -     mov	edx, 20
+ -      -     0.21   0.55    -      -      -     0.16   0.08    -     mov	rbx, rdi
+ -      -     0.34   0.36   0.74    -     1.00   0.63   0.67   0.26   call	alloc::raw_vec::RawVec<T,A>::reserve::do_reserve_and_handle
+ -      -     0.31   0.09    -      -      -     0.58   0.02    -     mov	rdi, rbx
+ -      -      -      -     0.50   0.50    -      -      -      -     mov	rsi, qword ptr [rbx + 16]
+ -      -     0.69    -      -      -      -      -     0.31    -     jmp	.LBB2_2
